@@ -22,7 +22,6 @@ ApplicationWindow {
 
 
 
-
         // Demo Animations
         PropertyAnimation {
             id: animSpeedUp

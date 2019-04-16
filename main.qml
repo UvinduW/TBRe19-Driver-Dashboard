@@ -22,7 +22,7 @@ ApplicationWindow {
 
 
 
-        // Demo Animations
+        // Demo Animations1
         PropertyAnimation {
             id: animSpeedUp
             target: driver_mode

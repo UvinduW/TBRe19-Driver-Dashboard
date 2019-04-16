@@ -15,7 +15,8 @@ ApplicationWindow {
         currentIndex: tabBar.currentIndex
 
         Driver_Mode {
-
+            height: 100
+            width: 100
         }
 
     }

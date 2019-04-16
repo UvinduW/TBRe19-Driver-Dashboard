@@ -3,6 +3,8 @@
         <file>main.qml</file>
         <file>main.qml</file>
         <file>qtquickcontrols2.conf</file>
-        <file>Driver_Mode.qml</file>
+        <file>screen_files/car_status/CarStatus.qml</file>
+        <file>screen_files/driver_mode/DriverMode.qml</file>
+        <file>screen_files/driver_mode/CircularGauge.qml</file>
     </qresource>
 </RCC>

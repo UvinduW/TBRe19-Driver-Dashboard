@@ -22,7 +22,7 @@ ApplicationWindow {
 
 
 
-        // Demo Animations1
+        // Demo Animations
         PropertyAnimation {
             id: animSpeedUp
             target: driver_mode
@@ -59,7 +59,7 @@ ApplicationWindow {
             id: animPowerUp
             target: driver_mode
             property: "power"
-            from: 0
+            from: -50
             to: 100
             duration: 5000
             loops: 1
@@ -77,7 +77,7 @@ ApplicationWindow {
             target: driver_mode
             property: "power"
             from: 100
-            to: 0
+            to: -50
             duration: 1500
             loops: 1
             easing.type: Easing.OutQuint

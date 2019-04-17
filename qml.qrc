@@ -6,5 +6,8 @@
         <file>screen_files/car_status/CarStatus.qml</file>
         <file>screen_files/driver_mode/DriverMode.qml</file>
         <file>screen_files/driver_mode/CircularGauge.qml</file>
+        <file>screen_files/driver_mode/GaugeMarks.png</file>
+        <file>screen_files/driver_mode/InnerMarks.png</file>
+        <file>screen_files/driver_mode/InnerMarks2.png</file>
     </qresource>
 </RCC>

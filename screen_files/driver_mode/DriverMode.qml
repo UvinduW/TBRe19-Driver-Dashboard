@@ -10,7 +10,7 @@ Item {
         //console.log(power)
         regenPower = power - 50
 
-        if (regenPower < 0)
+        if (power < 0)
         {
             regenPower = regenPower * -1
             regen = true

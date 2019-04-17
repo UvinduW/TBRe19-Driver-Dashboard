@@ -5,10 +5,23 @@ import QtQuick.Shapes 1.0
 
 Item {
     property int gauge_value: 100     // Variable to hold the current speed;
-    property int max_value: 130 // Variable to hold the maximum possible speed
-    property color gauge_colour: "red"
     property bool regenEnabled: false
-    property int startPosition: regen? 240 : 180
+    property int max_value: regenEnabled? 50: 130 // Variable to hold the maximum possible speed
+    property color gauge_colour: "red"    
+    property int startPosition: regenEnabled? 240 : 180
+    property int endPosition: regenEnabled? 80 : (startPosition + 360)
+    onRegenEnabledChanged: {
+        if (regenEnabled)
+        {
+            max_value = 50
+        }
+        else
+        {
+            max_value = 130
+        }
+
+        console.log("Regen: " + regenEnabled + "  |  End Pos: " + endPosition)
+    }
     ChartView {
         // Create a pie chart to show the speed
         id: speedChart
@@ -21,9 +34,9 @@ Item {
             // This PieSeries is used to draw the outermost thin ring
             id: outerRing
             size: 1         // Sets the relative size; 1 is the maximum; Size is relative to the size of the ChartView
-            holeSize: 0.95  // Hole in the middle to make it a donut; difference between size & holeSize is 0.05, making it very thin
+            holeSize: 0.8  // Hole in the middle to make it a donut; difference between size & holeSize is 0.05, making it very thin
             startAngle: startPosition // Set start to be at the bottom (which is 180 position)
-            endAngle: regenEnabled? 180: startPosition + 360   // Set end angle to be a full circle from start angle
+            endAngle: endPosition   // Set end angle to be a full circle from start angle
             PieSlice { id: speedsliceOuter; value: gauge_value; color: gauge_colour; borderColor: "transparent"; } // Fills the appropriate area with cyan colour
             PieSlice { id: blackOuter; value: max_value - gauge_value; color: "black"; borderColor: "transparent" } // Fills the remainder of the circle with black
         }
@@ -31,24 +44,24 @@ Item {
         PieSeries {
             // This PieSeries is used to draw the thick middle ring
             id: middleRing
-            size: 0.9       // Relative size set to be slightly smaller than outerRing in order to leave a gap
+            size: 0.7//0.9       // Relative size set to be slightly smaller than outerRing in order to leave a gap
             holeSize: 0.7   // Hole in the middle to make it a donut; difference between size & holeSize is 0.2, making it thicker
             startAngle: startPosition // Set start to be at the bottom (which is 180 position)
-            endAngle: regenEnabled? 180: startPosition + 360   // Set end angle to be a full circle from start angle
+            endAngle: endPosition   // Set end angle to be a full circle from start angle
             PieSlice { id: speedslice; value: gauge_value; color: gauge_colour; borderColor: "transparent"; } // Fills the appropriate area with cyan colour
             PieSlice { id: black; value: max_value - gauge_value; color: "black"; borderColor: "transparent" } // Fills the remainder of the circle with black
         }
 
-        PieSeries{
-            // This PieSeries is used to draw the inner thin ring
-            id: innerRing
-            size: 0.65      // Relative size is even smaller
-            holeSize:0.6    // Hole in the middle to make it a donut; difference between size & holeSize is 0.05, making it very thin
-            startAngle: startPosition // Set start to be at the bottom (which is 180 position)
-            endAngle: regenEnabled? 180: startPosition + 360   // Set end angle to be a full circle from start angle
-            PieSlice { id: speedsliceInner; value: gauge_value; color: gauge_colour; borderColor: "transparent"; } // Fills the appropriate area with cyan colour
-            PieSlice { id: blackInner; value: max_value - gauge_value; color: "black"; borderColor: "transparent" } // Fills the remainder of the circle with black
-        }
+//        PieSeries{
+//            // This PieSeries is used to draw the inner thin ring
+//            id: innerRing
+//            size: 0.65      // Relative size is even smaller
+//            holeSize:0.6    // Hole in the middle to make it a donut; difference between size & holeSize is 0.05, making it very thin
+//            startAngle: startPosition // Set start to be at the bottom (which is 180 position)
+//            endAngle: endPosition   // Set end angle to be a full circle from start angle
+//            PieSlice { id: speedsliceInner; value: gauge_value; color: gauge_colour; borderColor: "transparent"; } // Fills the appropriate area with cyan colour
+//            PieSlice { id: blackInner; value: max_value - gauge_value; color: "black"; borderColor: "transparent" } // Fills the remainder of the circle with black
+//        }
     }
 
     Shape {
@@ -57,6 +70,7 @@ Item {
         id: glowCircle
         width: 100
         height: 100
+        z:5
         anchors.centerIn: parent
         property real rad: 80
         ShapePath {
@@ -71,7 +85,7 @@ Item {
                 // This makes it look like a ring. Value of pos is varied to make pulsating ring
 
                 id: gradient
-                property real pos: 0.3
+                property real pos: (Math.abs(gauge_value)*0.5/max_value)+0.5 //0.3
 
                 centerX: glowCircle.width/2
                 centerY: glowCircle.height/2
@@ -79,7 +93,7 @@ Item {
                 focalX: centerX; focalY: centerY
                 GradientStop { position: 0; color: "transparent" }
                 //GradientStop { position: 0.2; color: gauge_colour }
-                GradientStop { position: 0.65; color: "transparent" }
+                //GradientStop { position: 0.65; color: "transparent" }
                 GradientStop { position: gradient.pos - 0.1; color: "transparent" }
                 GradientStop { position: gradient.pos; color: gauge_colour }
                 GradientStop { position: gradient.pos + 0.1; color: "transparent" }
@@ -102,46 +116,46 @@ Item {
             }
         }
 
-        PropertyAnimation {
-            // Changes the value of gradient pos to make it pulsate (incrementing pos value)
-            id: gradAnimationUp
-            target: gradient
-            property: "pos"
-            from: 0.8
-            to: 0.9
-            duration: 1500//200000*(1/speed)
-            loops: 1
-            easing.type: Easing.OutCubic
-            running: true
-            onStarted: {
-                // Pause decrement when this animation is active
-                gradAnimationDown.pause()
-            }
+//        PropertyAnimation {
+//            // Changes the value of gradient pos to make it pulsate (incrementing pos value)
+//            id: gradAnimationUp
+//            target: gradient
+//            property: "pos"
+//            from: 0.8
+//            to: 0.9
+//            duration: 1500//200000*(1/speed)
+//            loops: 1
+//            easing.type: Easing.OutCubic
+//            running: true
+//            onStarted: {
+//                // Pause decrement when this animation is active
+//                gradAnimationDown.pause()
+//            }
 
-            onStopped:{
-                // Start decrement once this animation has finished
-                gradAnimationDown.resume()
+//            onStopped:{
+//                // Start decrement once this animation has finished
+//                gradAnimationDown.resume()
 
-            }
-        }
-        PropertyAnimation {
-            // Changes the value of gradient pos to make it pulsate (decrementing pos value)
-            id: gradAnimationDown
-            target: gradient
-            property: "pos"
-            from: 0.9
-            to: 0.8
-            duration: 1500//200000*(1/speed)
-            loops: 1
-            easing.type: Easing.InCubic
-            running: true
-            onStopped:{
-                // When this animation finishes, restart it and also start increment.
-                // Increment object will pause this animation, so restart is okay to do here
-                gradAnimationDown.restart()
-                gradAnimationUp.start()
-            }
-        }
+//            }
+//        }
+//        PropertyAnimation {
+//            // Changes the value of gradient pos to make it pulsate (decrementing pos value)
+//            id: gradAnimationDown
+//            target: gradient
+//            property: "pos"
+//            from: 0.9
+//            to: 0.8
+//            duration: 1500//200000*(1/speed)
+//            loops: 1
+//            easing.type: Easing.InCubic
+//            running: true
+//            onStopped:{
+//                // When this animation finishes, restart it and also start increment.
+//                // Increment object will pause this animation, so restart is okay to do here
+//                gradAnimationDown.restart()
+//                gradAnimationUp.start()
+//            }
+//        }
         Text{
             // Displays the value as text at the centre of the gauge
             property real shade_amount: 1.6
@@ -152,6 +166,7 @@ Item {
             font.family: "Eurostile"
             color: Qt.lighter(gauge_colour, shade_amount)    // Make value a lighter colour than the rings
             text: Math.round(gauge_value)
+            z:3
         }
         PropertyAnimation {
             // Changes the value of text shading (incrementing shade_amount value)
@@ -192,6 +207,15 @@ Item {
                 textAnimateDown.restart()
                 textAnimateUp.start()
             }
+        }
+        Image {
+            id: markings
+            source: "InnerMarks2.png"
+            anchors.centerIn: parent
+            width: 250
+            height: 250
+            visible: true
+            z:2
         }
     }
 

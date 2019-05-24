@@ -1,13 +1,30 @@
 <RCC>
     <qresource prefix="/">
-        <file>main.qml</file>
-        <file>main.qml</file>
         <file>qtquickcontrols2.conf</file>
         <file>screen_files/car_status/CarStatus.qml</file>
         <file>screen_files/driver_mode/DriverMode.qml</file>
         <file>screen_files/driver_mode/CircularGauge.qml</file>
         <file>screen_files/driver_mode/GaugeMarks.png</file>
+        <file>screen_files/driver_mode/arrow.png</file>
         <file>screen_files/driver_mode/InnerMarks.png</file>
-        <file>screen_files/driver_mode/InnerMarks2.png</file>
+        <file>screen_files/driver_mode/VerticalGauge.qml</file>
+        <file>screen_files/driver_mode/ModeIndicator.qml</file>
+        <file>screen_files/Animator.qml</file>
+        <file>screen_files/driver_mode/bolt.png</file>
+        <file>screen_files/driver_mode/bolt_yellow.png</file>
+        <file>screen_files/driver_mode/heart.png</file>
+        <file>screen_files/driver_mode/heart_2.png</file>
+        <file>screen_files/driver_mode/InnerMarks.qml</file>
+        <file>screen_files/driver_mode/carbon_fiber.jpg</file>
+        <file>screen_files/driver_mode/carbon_fiber_2.jpg</file>
+        <file>screen_files/driver_mode/LVStatus.qml</file>
+        <file>screen_files/driver_mode/AIRStatus.qml</file>
+        <file>screen_files/driver_mode/CircularBack.qml</file>
+        <file>screen_files/driver_mode/ShutdownIndicator.qml</file>
+        <file>screen_files/driver_mode/VehicleStatus.qml</file>
+        <file>screen_files/driver_mode/SystemStatus.qml</file>
+        <file>main.qml</file>
+        <file>screen_files/driver_mode/CellStatus.qml</file>
+        <file>screen_files/StaticValues.qml</file>
     </qresource>
 </RCC>

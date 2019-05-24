@@ -1,6 +1,8 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QQmlContext>
 #include <QtWidgets/QApplication>
+#include <dash.h>
 
 int main(int argc, char *argv[])
 {
@@ -11,6 +13,7 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
+    engine.rootContext()->setContextProperty(QStringLiteral("dash"),new dash);
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
     if (engine.rootObjects().isEmpty())
         return -1;

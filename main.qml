@@ -2,7 +2,8 @@ import QtQuick 2.12
 import QtQuick.Controls 2.5
 import QtQuick.VirtualKeyboard 2.4
 import "screen_files/driver_mode"
-import QtMultimedia 5.8
+import "screen_files"
+//import QtMultimedia 5.8
 
 
 ApplicationWindow {
@@ -12,80 +13,41 @@ ApplicationWindow {
     height: 480
     title: qsTr("Dashing Boi 2: Return of the Dash")
 
+    Animator{
+        id: animatedVals
+    }
+
     SwipeView {
         id: swipeView
         anchors.fill: parent
-
+        transform: Rotation {
+        angle: 0
+        origin.x: window.width / 2
+        origin.y: window.height / 2
+        }
         DriverMode {
             id:driver_mode
-        }
-
-
-
-        // Demo Animations
-        PropertyAnimation {
-            id: animSpeedUp
-            target: driver_mode
-            property: "speed"
-            from: 0
-            to: 130
-            duration: 10000
-            loops: 1
-            easing.type: Easing.OutQuad
-            running: true
-            onStarted: {
-                animSpeedDown.pause()
-            }
-            onStopped: {
-                animSpeedDown.resume()
-            }
-        }
-        PropertyAnimation {
-            id: animSpeedDown
-            target: driver_mode
-            property: "speed"
-            from: 130
-            to: 0
-            duration: 1500
-            loops: 1
-            easing.type: Easing.OutQuint
-            running: true
-            onStopped: {
-                animSpeedDown.restart()
-                animSpeedUp.start()
-            }
-        }
-        PropertyAnimation {
-            id: animPowerUp
-            target: driver_mode
-            property: "power"
-            from: -50
-            to: 100
-            duration: 5000
-            loops: 1
-            easing.type: Easing.OutQuad
-            running: true
-            onStarted: {
-                animPowerDown.pause()
-            }
-            onStopped: {
-                animPowerDown.resume()
-            }
-        }
-        PropertyAnimation {
-            id: animPowerDown
-            target: driver_mode
-            property: "power"
-            from: 100
-            to: -50
-            duration: 1500
-            loops: 1
-            easing.type: Easing.OutQuint
-            running: true
-            onStopped: {
-                animPowerDown.restart()
-                animPowerUp.start()
-            }
+            speed: animatedVals.vehicleSpeed
+            power: animatedVals.vehiclePower
+            vehicleMode: animatedVals.vehicleStatus
+            maxCellTemp: animatedVals.maxCellTemp
+            hvVoltage: animatedVals.hvVoltage
+            backgroundColour: "#181818"
+            lvBars: animatedVals.lvBars
+            airValue: animatedVals.airStatus
+            lvVoltage: animatedVals.lvVoltage
+            bspd: animatedVals.bspd
+            imd: animatedVals.imd
+            bms: animatedVals.bms
+            ecu: animatedVals.ecu
+            inertia: animatedVals.inertia
+            bots: animatedVals.bots
+            fuse: animatedVals.fuse
+            pcb: animatedVals.pcb
+            estop: animatedVals.estop
+            tsms: animatedVals.tsms
+            hvd: animatedVals.hvd
+            interlock: animatedVals.interlock
         }
     }
 

@@ -12,6 +12,7 @@ Item {
     property int endPosition: regenEnabled? 80 : (startPosition + 360)
     property string units: "kph"
     property color backColour: "#181818"
+    property int showMarkings: 1
     onRegenEnabledChanged: {
         if (regenEnabled)
         {
@@ -22,7 +23,7 @@ Item {
             max_value = 130
         }
 
-        console.log("Regen: " + regenEnabled + "  |  End Pos: " + endPosition)
+        //console.log("Regen: " + regenEnabled + "  |  End Pos: " + endPosition)
     }
     CircularBack{
         anchors.centerIn: speedChart
@@ -61,8 +62,8 @@ Item {
             holeSize: 0.75 //0.7   // Hole in the middle to make it a donut; difference between size & holeSize is 0.2, making it thicker
             startAngle: startPosition // Set start to be at the bottom (which is 180 position)
             endAngle: endPosition   // Set end angle to be a full circle from start angle
-            PieSlice { id: speedslice; value: 0.5; color: gaugeColour; borderColor: "transparent"; } // Fills the appropriate area with cyan colour
-            PieSlice { id: black; value: max_value - 0.5; color: backColour; borderColor: "transparent" } // Fills the remainder of the circle with black
+            PieSlice { id: speedslice; value: max_value*0.005; color: gaugeColour; borderColor: "transparent"; } // Fills the appropriate area with cyan colour
+            PieSlice { id: black; value: max_value*(1-0.01); color: backColour; borderColor: "transparent" } // Fills the remainder of the circle with black
         }
 //        PieSeries {
 //            // This PieSeries is used to draw the thick middle ring
@@ -157,6 +158,7 @@ Item {
             width: 250
             height: 250
             z:2
+            visible: showMarkings
         }
 
 //        Image {

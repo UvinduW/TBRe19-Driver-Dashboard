@@ -1,4 +1,5 @@
-QT += quick charts
+QT += quick charts  \
+serialbus
 CONFIG += c++11
 
 # The following define makes your compiler emit warnings if you use
@@ -14,7 +15,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-    dash.cpp
+    dash.cpp \
+    cansignal.cpp \
+    signallist.cpp \
+    databaseparser.cpp
 
 RESOURCES += qml.qrc
 
@@ -32,7 +36,10 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 DISTFILES +=
 
 HEADERS += \
-    dash.h
+    dash.h \
+    cansignal.h \
+    signallist.h \
+    databaseparser.h
 
 ## So wiringPi include files can be found during compile
 #INCLUDEPATH    += /usr/local/include

@@ -26,5 +26,9 @@
         <file>main.qml</file>
         <file>screen_files/driver_mode/CellStatus.qml</file>
         <file>screen_files/StaticValues.qml</file>
+        <file>logo_left.png</file>
+        <file>logo_right.png</file>
+        <file>screen_files/StartupAnimator.qml</file>
+        <file>CircularBar.qml</file>
     </qresource>
 </RCC>

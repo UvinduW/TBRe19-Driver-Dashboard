@@ -21,7 +21,7 @@ Item {
             font.bold: true
             font.family: "Eurostile"
             color: "white"
-            text: qsTr("LV Voltage: " + Math.round(value) + " V")
+            text: qsTr("LV Voltage: " + Math.round(value*10)/10 + " V")
         }
         Rectangle {
             id: lvVoltage

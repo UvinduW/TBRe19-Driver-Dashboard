@@ -32,6 +32,25 @@ Item {
     property int interlock: 0
     property int tweak: 400
     property int danger: 0 //imd? 1: 0
+    property int showInnerMarkings: 0
+    property color startupSpeedColour: "#005dab"
+    property color normalSpeedColour: "cyan"
+    property color speedColour: "#005dab"
+    property color startupPowerColour: "#ffc423"
+    property color normalPowerColour: "#00ff00"
+    property color powerColour: "#ffc423"
+
+    onOpacityChanged: {
+        if (driverScreen.opacity == 1)
+        {
+            showInnerMarkings = 1
+        }
+        else
+        {
+            showInnerMarkings = 0
+        }
+    }
+
     onPowerChanged: {
         //console.log(power)
         regenPower = power - 50
@@ -127,6 +146,7 @@ Item {
             }
 
             Rectangle{
+                id: speedRectangle
                 width: 330
                 height: 400
                 color: "transparent"
@@ -139,9 +159,10 @@ Item {
                     startPosition: 240
                     endPosition: 520
                     regenEnabled: false
-                    gaugeColour: "cyan"
+                    gaugeColour: speedColour//"cyan"
                     gauge_value: speed
                     backColour: backgroundColour
+                    showMarkings: showInnerMarkings
                 }
             }
             Rectangle {
@@ -181,16 +202,18 @@ Item {
                 CircularGauge {
                     // Section 5
                     id: powerGauge
+                    property color normalColour: "#ffc423"
                     anchors.centerIn: parent
                     height: 400
                     width: 400
                     max_value: 100
                     startPosition: 240
                     regenEnabled: regen
-                    gaugeColour: regen ? "#FD5F00" : power < 80? "#00ff00": "red"
+                    gaugeColour: regen ? "#FD5F00" : power < 80? powerColour: "red" //regen ? "#FD5F00" : power < 80? "#00ff00": "red"
                     gauge_value: power
                     units: "kW"
                     backColour: backgroundColour
+                    showMarkings: showInnerMarkings
                 }
             }
 

@@ -27,7 +27,7 @@ Item {
     property int hvd: 0
     property int interlock: 0
     property int disabled: 0
-    property int status: 0
+    property int status: 0  //unused probs
 
     // Demo Animations
     PropertyAnimation {

@@ -1,5 +1,8 @@
 #include "dash.h"
 #include "signallist.h"
+#define _USE_MATH_DEFINES
+#include <math.h>
+#define PI 3.1415926536
 
 #include <QThread>
 //#include <QDateTime>
@@ -25,8 +28,12 @@ dash::dash(QObject *parent): QObject(parent)
 
         // Apply filters to CAN Bus device
         QList<QCanBusDevice::Filter> filterList;
-        filterList.append(setCanFilter(0x01A));
-        filterList.append(setCanFilter(0x019));
+        filterList.append(setCanFilter(0x01A));        
+        filterList.append(setCanFilter(0x100));
+        filterList.append(setCanFilter(0x101));
+        filterList.append(setCanFilter(0x503));
+        filterList.append(setCanFilter(0x704));
+        filterList.append(setCanFilter(0x701));
 
         this->device->setConfigurationParameter(QCanBusDevice::RawFilterKey, QVariant::fromValue(filterList));
 
@@ -50,21 +57,61 @@ dash::dash(QObject *parent): QObject(parent)
 
 void dash::readFrames()
 {
+    int value;
+
+
     // Read frames
     while (device->framesAvailable() > 0)
     {
         // Retrieve frame
         QCanBusFrame frame = device->readFrame();
+        const QByteArray payload = frame.payload();
 
         if(frame.isValid())
         {
             qDebug() << frame.frameId();
             switch (frame.frameId())
             {
-                case 0x7DF:
-                    m_speed = decodeFrame(frame);
+//                case 0x7DF:
+//                    m_speed = decodeFrame(frame);
+//                    emit speedChanged();
+//                    qDebug() << m_speed;
+//                    break;
+                case 0x503:
+//                    payload = frame.payload();
+                    value = payload[4] * pow(16,6) + payload[5] * pow(16,4) + payload[6] * pow(16,2) + payload[7];
+                    m_speed = M_PI * 0.445 * 3600 / ( value * 20 * 1000 / 1000000);
                     emit speedChanged();
-                    qDebug() << m_speed;
+                    break;
+
+                case 0x100:
+                    value = payload[1] * pow(16,2) + payload[0];
+                    m_hvVoltage = value * 0.1;
+
+                    value = payload[5] * pow(16,2) + payload[4];
+                    m_hvCurrent = value * 0.1;
+                    m_power = m_hvVoltage * m_hvCurrent;
+
+                    emit hvVoltageChanged();
+                    emit powerChanged();
+                    break;
+
+                case 0x101:
+                    value = value = payload[1] * pow(16,2) + payload[0];
+                    m_cellVoltage = value * 0.0001;
+                    emit cellVoltageChanged();
+                    break;
+
+                case 0x704:
+                    m_vehicleMode = payload[1];
+                    emit vehicleModeChanged();
+                    break;
+
+
+                case 0x701:
+                    value = payload[3] * pow(16,2) + payload[2];
+                    m_lvVoltage = value / 1000;
+                    emit lvVoltageChanged();
                     break;
 
                 default:

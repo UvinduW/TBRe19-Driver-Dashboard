@@ -1,7 +1,7 @@
-import QtQuick 2.12
-import QtQuick.Controls 2.5
-import QtQuick.VirtualKeyboard 2.4
-import QtGraphicalEffects 1.12
+import QtQuick 2.10
+import QtQuick.Controls 2.2
+//import QtQuick.VirtualKeyboard 2.4
+import QtGraphicalEffects 1.0
 import "screen_files/driver_mode"
 import "screen_files"
 //import QtMultimedia 5.8
@@ -103,28 +103,28 @@ ApplicationWindow {
             id:driver_mode
             opacity: dispMode==0? 1 - startupAnimation.imageOpacity: 1
             speed: dash.speed
-            power: animatedVals.vehiclePower
-            vehicleMode: animatedVals.vehicleStatus
-            maxCellTemp: animatedVals.maxCellTemp
-            hvVoltage: animatedVals.hvVoltage
+            power: dash.power
+            vehicleMode: dash.vehicleMode
+//            maxCellTemp: animatedVals.maxCellTemp
+            hvVoltage: dash.hvVoltage
             backgroundColour: "#181818"
-            lvBars: animatedVals.lvBars
-            airValue: animatedVals.airStatus
-            lvVoltage: animatedVals.lvVoltage
-            cellVoltage: animatedVals.cellVoltage
-            bspd: animatedVals.bspd
-            imd: animatedVals.imd
-            bms: animatedVals.bms
-            ecu: animatedVals.ecu
-            inertia: animatedVals.inertia
-            bots: animatedVals.bots
-            fuse: animatedVals.fuse
-            pcb: animatedVals.pcb
-            estop: animatedVals.estop
-            tsms: animatedVals.tsms
-            hvd: animatedVals.hvd
-            interlock: animatedVals.interlock
-            cellBars: animatedVals.cellBars
+//            lvBars: animatedVals.lvBars
+//            airValue: animatedVals.airStatus
+            lvVoltage: dash.lvVoltage
+            cellVoltage: dash.cellVoltage
+//            bspd: animatedVals.bspd
+//            imd: animatedVals.imd
+//            bms: animatedVals.bms
+//            ecu: animatedVals.ecu
+//            inertia: animatedVals.inertia
+//            bots: animatedVals.bots
+//            fuse: animatedVals.fuse
+//            pcb: animatedVals.pcb
+//            estop: animatedVals.estop
+//            tsms: animatedVals.tsms
+//            hvd: animatedVals.hvd
+//            interlock: animatedVals.interlock
+//            cellBars: animatedVals.cellBars
             powerColour: startupAnimation.powerColour
             speedColour: startupAnimation.speedColour
         }

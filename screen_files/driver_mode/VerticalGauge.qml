@@ -1,7 +1,7 @@
 import QtQuick 2.0
-import QtQuick.Layouts 1.11
+import QtQuick.Layouts 1.3
 import QtQuick.Particles 2.0
-import QtGraphicalEffects 1.12
+import QtGraphicalEffects 1.0
 
 Item {
     property color lowColour: "cyan"

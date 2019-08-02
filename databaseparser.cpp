@@ -6,7 +6,7 @@ DatabaseParser::DatabaseParser(std::string filename, std::string delm)
     delimeter = delm;
 }
 
-std::vector<std::vector<std::string> > DatabaseParser::getData()
-{
+//std::vector<std::vector<std::string> > DatabaseParser::getData()
+//{
 
-}
+//}

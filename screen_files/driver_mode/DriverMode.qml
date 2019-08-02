@@ -1,7 +1,7 @@
 import QtQuick 2.0
-import QtQuick.Layouts 1.11
+import QtQuick.Layouts 1.3
 import QtQuick.Particles 2.0
-import QtGraphicalEffects 1.12
+import QtGraphicalEffects 1.0
 
 Item {
     id: driverScreen
@@ -245,14 +245,14 @@ Item {
                 CellStatus{
                     width: 210
                     height: 120
-                    numberLit: cellBars
+                    numberLit: cellVoltage < 3.42? 1 : cellVoltage < 3.83? 2 : 3
                     value: cellVoltage
                 }
 
                 LVStatus {
                     width: 210
                     height: 120
-                    numberLit: lvBars
+                    numberLit: lvVoltage < 23? 1 : lvVoltage < 26? 2 : 3
                     value: lvVoltage
                 }
                 AIRStatus {

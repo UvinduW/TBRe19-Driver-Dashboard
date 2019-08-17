@@ -1,0 +1,146 @@
+Name,Message,ID,Multiplexing/Group,Startbit,Transmitter,Length [Bit],Byte Order,Value Type,Initial Value,Factor,Offset,Minimum,Maximum,Unit,Value Table,Comment,Message ID,GenSigSendType,GenSigInactiveValue
+Acc_Angle,SteeringWheelSensor,0x234,-,0,Steering_Wheel_Sensor,16,Intel,Signed,0,0.1,0,0,0,Degrees,<none>,,0x234,Cyclic,0
+Acc_Roll,AccelerometerX,0x178,-,0,Accelerometer,16,Intel,Unsigned,0,0.005,0,0,0,,<none>,,0x178,Cyclic,0
+Acc_XAxis,AccelerometerX,0x178,-,32,Accelerometer,16,Intel,Unsigned,0,0.0001274,0,0,0,,<none>,,0x178,Cyclic,0
+Acc_Yaw,AccelerometerY,0x174,-,0,Accelerometer,16,Intel,Unsigned,0,0.005,0,0,0,,<none>,,0x174,Cyclic,0
+Acc_YAxis,AccelerometerY,0x174,-,32,Accelerometer,16,Intel,Unsigned,0,0.0001274,0,0,0,,<none>,,0x174,Cyclic,0
+Acc_ZAxis,AccelerometerZ,0x17C,-,32,Accelerometer,16,Intel,Unsigned,0,0.0001274,0,0,0,,<none>,,0x17C,Cyclic,0
+Acu_Fan,BMS_Feedback_1,0x100,-,48,BMS,8,Intel,Unsigned,0,1,0,0,255,,<none>,,0x100,Cyclic,0
+APPS_BP_Implausibility,VCU_Diagnostics,0x700,-,17,VCU,1,Intel,Unsigned,0,1,0,0,1,,<none>,,0x700,Cyclic,0
+APPS_Implausibility,VCU_Diagnostics,0x700,-,16,VCU,1,Intel,Unsigned,0,1,0,0,1,,<none>,,0x700,Cyclic,0
+Avg_Cell_Voltage,BMS_Feedback_2,0x101,-,32,BMS,16,Intel,Unsigned,0,1,0,0,65535,V,<none>,,0x101,Cyclic,0
+BMS_Fault,Shutdown_Data,0x705,-,3,ECU,1,Intel,Unsigned,0,1,0,0,1,,<none>,,0x705,Cyclic,0
+Boost_on,VCU_Drive_Function,0x707,-,2,VCU,1,Intel,Signed,0,1,0,0,0,,<none>,,0x707,Cyclic,0
+Brake_Bool,VCU_Vehicle_Functionality,0x704,-,26,VCU,1,Intel,Unsigned,0,1,0,0,1,,<none>,,0x704,Cyclic,0
+Brake_Percentage,VCU_Pedal_Percentages,0x702,-,24,VCU,8,Intel,Unsigned,0,1,0,0,255,%,<none>,,0x702,Cyclic,0
+Brake_Voltage,VCU_Pedal_Voltages,0x703,-,16,VCU,16,Intel,Unsigned,0,1,0,0,65535,mV,<none>,,0x703,Cyclic,0
+BSPD_Fault,Shutdown_Data,0x705,-,5,ECU,1,Intel,Unsigned,0,1,0,0,1,,<none>,,0x705,Cyclic,0
+BSPD_TSI_Fault,Shutdown_Data,0x705,-,6,ECU,1,Intel,Unsigned,0,1,0,0,1,,<none>,,0x705,Cyclic,0
+Buzzer,VCU_HW_IO,0x701,-,5,VCU,1,Intel,Unsigned,0,1,0,0,1,,<none>,,0x701,Cyclic,0
+Consle_Y,VCU_HW_IO,0x701,-,2,VCU,1,Intel,Signed,0,1,0,0,0,Bool,<none>,,0x701,Cyclic,0
+Console_RTD,VCU_HW_IO,0x701,-,0,VCU,1,Intel,Unsigned,0,1,0,0,1,Bool,<none>,,0x701,Cyclic,0
+Console_X,VCU_HW_IO,0x701,-,3,VCU,1,Intel,Unsigned,0,1,0,0,1,Bool,<none>,,0x701,Cyclic,0
+Console_Z,VCU_HW_IO,0x701,-,1,VCU,1,Intel,Signed,0,1,0,0,0,,<none>,,0x701,Cyclic,0
+Control_Word,VCU_Vehicle_Functionality,0x704,-,0,VCU,8,Intel,Unsigned,0,1,0,0,1,,<none>,,0x704,Cyclic,0
+Coolant_Pump_Fan,VCU_HW_IO,0x701,-,7,VCU,1,Intel,Unsigned,0,1,0,0,1,,<none>,,0x701,Cyclic,0
+CS_DirectCurrents,HC4_Debug_Demands,0x19137171,-,56,Motor_Control,8,Intel,Unsigned,0,1,0,0,0,,<none>,,0x19137171,Cyclic,0
+DC_Link_Voltage_Target,HC3_Battery_Demands,0x19127171,-,32,VCU,16,Intel,Signed,0,0.0625,0,0,0,V,<none>,Min motor current calculated by VCM (regen),0x19127171,Cyclic,0
+Debug_Id_act,HD1_Debug_Currents,0x1928FF71,-,0,Motor_Control,16,Intel,Signed,0,0.0625,0,0,0,A,<none>,,0x1928FF71,Cyclic,0
+Debug_Id_direct_control,HC4_Debug_Demands,0x19137171,-,16,Motor_Control,16,Intel,Signed,0,0.0625,0,0,0,A,<none>,,0x19137171,Cyclic,0
+Debug_Id_ref,HD1_Debug_Currents,0x1928FF71,-,32,Motor_Control,16,Intel,Signed,0,0.0625,0,0,0,A,<none>,,0x1928FF71,Cyclic,0
+Debug_Iq_act,HD1_Debug_Currents,0x1928FF71,-,16,Motor_Control,16,Intel,Signed,0,0.0625,0,0,0,A,<none>,,0x1928FF71,Cyclic,0
+Debug_Iq_direct_control,HC4_Debug_Demands,0x19137171,-,0,Motor_Control,16,Intel,Signed,0,0.0625,0,0,0,A,<none>,,0x19137171,Cyclic,0
+Debug_Iq_max,HD5_Debug_Control_Data_PMAC,0x192CFF71,-,32,Motor_Control,16,Intel,Signed,0,1,0,0,0,A,<none>,,0x192CFF71,Cyclic,0
+Debug_Iq_max,HD6_Debug_Control_Data_FV,0x192DFF71,-,32,Motor_Control,16,Intel,Signed,0,1,0,0,0,A,<none>,,0x192DFF71,Cyclic,0
+Debug_Iq_ref,HD1_Debug_Currents,0x1928FF71,-,48,Motor_Control,16,Intel,Signed,0,0.0625,0,0,0,A,<none>,,0x1928FF71,Cyclic,0
+Debug_Iv_lim,HD5_Debug_Control_Data_PMAC,0x192CFF71,-,16,Motor_Control,16,Intel,Signed,0,1,0,0,0,A,<none>,,0x192CFF71,Cyclic,0
+Debug_Lm_Sat,HD6_Debug_Control_Data_FV,0x192DFF71,-,16,Motor_Control,16,Intel,Signed,0,1.53E-05,0,0,0,H,<none>,,0x192DFF71,Cyclic,0
+Debug_Ls,HD5_Debug_Control_Data_PMAC,0x192CFF71,-,48,Motor_Control,16,Intel,Signed,0,5.96E-08,0,0,0,H,<none>,,0x192CFF71,Cyclic,0
+Debug_max_flux,HD5_Debug_Control_Data_PMAC,0x192CFF71,-,0,Motor_Control,16,Intel,Signed,0,1,0,0,0,A,<none>,,0x192CFF71,Cyclic,0
+Debug_Mod_Index,HD2_Debug_Voltages,0x1929FF71,-,32,Motor_Control,16,Intel,Unsigned,0,0.00390625,0,0,0,%,<none>,,0x1929FF71,Cyclic,0
+Debug_Recip_Flux,HD6_Debug_Control_Data_FV,0x192DFF71,-,48,Motor_Control,16,Intel,Signed,0,1,0,0,0,1/A,<none>,,0x192DFF71,Cyclic,0
+Debug_Slip,HD6_Debug_Control_Data_FV,0x192DFF71,-,0,Motor_Control,16,Intel,Signed,0,0.0625,0,0,0,rad/s,<none>,,0x192DFF71,Cyclic,0
+Debug_Temps_Cap_Estimate_Fast,HD4_Debug_Temperatures_B,0x192BFF71,-,0,Motor_Control,8,Intel,Unsigned,0,1,0,0,255,degC,<none>,,0x192BFF71,Cyclic,0
+Debug_Temps_Cap_Estimate_Slow,HD4_Debug_Temperatures_B,0x192BFF71,-,16,Motor_Control,8,Intel,Unsigned,0,1,0,0,255,degC,<none>,,0x192BFF71,Cyclic,0
+Debug_Temps_Coolant,HD4_Debug_Temperatures_B,0x192BFF71,-,48,Motor_Control,8,Intel,Unsigned,0,1,0,0,0,degC,<none>,,0x192BFF71,Cyclic,0
+Debug_Temps_Delta_Tj,HD4_Debug_Temperatures_B,0x192BFF71,-,32,Motor_Control,8,Intel,Unsigned,0,1,0,0,255,degC,<none>,,0x192BFF71,Cyclic,0
+Debug_Temps_Heatsink,HD4_Debug_Temperatures_B,0x192BFF71,-,24,Motor_Control,8,Intel,Unsigned,0,1,0,0,255,degC,<none>,,0x192BFF71,Cyclic,0
+Debug_Temps_Junction_0,HD3_Debug_Temperatures_A,0x192AFF71,-,0,Motor_Control,8,Intel,Unsigned,0,1,0,0,255,degC,<none>,,0x192AFF71,Cyclic,0
+Debug_Temps_Junction_1,HD3_Debug_Temperatures_A,0x192AFF71,-,8,Motor_Control,8,Intel,Unsigned,0,1,0,0,255,degC,<none>,,0x192AFF71,Cyclic,0
+Debug_Temps_Junction_2,HD3_Debug_Temperatures_A,0x192AFF71,-,16,Motor_Control,8,Intel,Unsigned,0,1,0,0,255,degC,<none>,,0x192AFF71,Cyclic,0
+Debug_Temps_Junction_3,HD3_Debug_Temperatures_A,0x192AFF71,-,24,Motor_Control,8,Intel,Unsigned,0,1,0,0,255,degC,<none>,,0x192AFF71,Cyclic,0
+Debug_Temps_Junction_4,HD3_Debug_Temperatures_A,0x192AFF71,-,32,Motor_Control,8,Intel,Unsigned,0,1,0,0,255,degC,<none>,,0x192AFF71,Cyclic,0
+Debug_Temps_Junction_5,HD3_Debug_Temperatures_A,0x192AFF71,-,40,Motor_Control,8,Intel,Unsigned,0,1,0,0,255,degC,<none>,,0x192AFF71,Cyclic,0
+Debug_Temps_Motor_Estimate,HD3_Debug_Temperatures_A,0x192AFF71,-,56,Motor_Control,8,Intel,Unsigned,0,1,0,0,255,degC,<none>,,0x192AFF71,Cyclic,0
+Debug_Temps_Motor_Measured,HD3_Debug_Temperatures_A,0x192AFF71,-,48,Motor_Control,8,Intel,Unsigned,0,1,0,0,255,degC,<none>,,0x192AFF71,Cyclic,0
+Debug_Temps_Normalised,HD4_Debug_Temperatures_B,0x192BFF71,-,40,Motor_Control,8,Intel,Unsigned,0,1,0,0,255,degC,<none>,,0x192BFF71,Cyclic,0
+Debug_Temps_Track,HD4_Debug_Temperatures_B,0x192BFF71,-,8,Motor_Control,8,Intel,Unsigned,0,1,0,0,255,degC,<none>,,0x192BFF71,Cyclic,0
+Debug_Temps_Winding,HD4_Debug_Temperatures_B,0x192BFF71,-,56,Motor_Control,8,Intel,Unsigned,0,1,0,0,0,degC,<none>,,0x192BFF71,Cyclic,0
+Debug_Torque_Control,HD2_Debug_Voltages,0x1929FF71,-,48,Motor_Control,16,Intel,Signed,0,0.0625,0,0,0,Nm,<none>,Torque that is to be used as the control value for caluclating current references,0x1929FF71,Cyclic,0
+Debug_Ud,HD2_Debug_Voltages,0x1929FF71,-,0,Motor_Control,16,Intel,Signed,0,0.0625,0,0,0,V,<none>,,0x1929FF71,Cyclic,0
+Debug_Uq,HD2_Debug_Voltages,0x1929FF71,-,16,Motor_Control,16,Intel,Signed,0,0.0625,0,0,0,V,<none>,,0x1929FF71,Cyclic,0
+E1_Switch_Fault,Shutdown_Data,0x705,-,9,ECU,1,Intel,Unsigned,0,1,0,0,1,,<none>,,0x705,Cyclic,0
+E2_Switch_Fault,Shutdown_Data,0x705,-,10,ECU,1,Intel,Unsigned,0,1,0,0,1,,<none>,,0x705,Cyclic,0
+ECU_TorqueAcut,VCU_Torque,0x706,-,16,VCU,16,Intel,Signed,0,0.1,0,0,0,Percent,<none>,,0x706,Cyclic,0
+ECU_TorqueReq,VCU_Torque,0x706,-,0,VCU,16,Intel,Signed,0,0.1,0,0,0,Percent,<none>,,0x706,Cyclic,0
+Encoder_pos,HS5_Encoder_Info,0x191CFF71,-,0,Motor_Control,32,Intel,Signed,0,1.53E-05,0,0,0,rotations,<none>,,0x191CFF71,Cyclic,0
+ESTP_Left_Fault,Shutdown_Data,0x705,-,1,ECU,1,Intel,Unsigned,0,1,0,0,1,,<none>,,0x705,Cyclic,0
+ESTP_Right_Fault,Shutdown_Data,0x705,-,2,ECU,1,Intel,Unsigned,0,1,0,0,1,,<none>,,0x705,Cyclic,0
+Front_Left_Wheel_Speed,Front_Wheel_Speeds,0x502,-,16,Sensor_Board,16,Intel,Unsigned,0,0.1,0,0,6553.5,rpm,<none>,,0x502,Cyclic,0
+Front_Return_Fault,Shutdown_Data,0x705,-,11,ECU,1,Intel,Unsigned,0,1,0,0,1,,<none>,,0x705,Cyclic,0
+Front_Right_Wheel_Speed,Front_Wheel_Speeds,0x502,-,0,Sensor_Board,16,Intel,Unsigned,0,0.1,0,0,6553.5,rpm,<none>,,0x502,Cyclic,0
+GearingRatio,VCU_Diagnostics,0x700,-,8,VCU,8,Intel,Unsigned,0,0.1,0,0,0,,<none>,,0x700,Cyclic,0
+High_AIR_Fault,Shutdown_Data,0x705,-,14,ECU,1,Intel,Unsigned,0,1,0,0,1,,<none>,,0x705,Cyclic,0
+High_Cell_ID,BMS_Feedback_2,0x101,-,56,BMS,8,Intel,Unsigned,0,1,0,0,255,,<none>,,0x101,Cyclic,0
+High_Cell_Voltage,BMS_Feedback_2,0x101,-,16,BMS,16,Intel,Unsigned,0,1,0,0,65535,,<none>,,0x101,Cyclic,0
+HVD_Fault,Shutdown_Data,0x705,-,12,ECU,1,Intel,Unsigned,0,1,0,0,1,,<none>,,0x705,Cyclic,0
+IMD_Fault,Shutdown_Data,0x705,-,4,ECU,1,Intel,Unsigned,0,1,0,0,1,,<none>,,0x705,Cyclic,0
+Instant_Pack_Voltage,BMS_Feedback_1,0x100,-,0,BMS,16,Intel,Unsigned,0,1,0,0,65535,,<none>,,0x100,Cyclic,0
+Latch_In_Fault,Shutdown_Data,0x705,-,7,ECU,1,Intel,Unsigned,0,1,0,0,1,,<none>,,0x705,Cyclic,0
+Latch_Out_Fault,Shutdown_Data,0x705,-,8,ECU,1,Intel,Unsigned,0,1,0,0,1,,<none>,,0x705,Cyclic,0
+Low_Cell_ID,BMS_Feedback_2,0x101,-,48,BMS,8,Intel,Unsigned,0,1,0,0,255,,<none>,,0x101,Cyclic,0
+Low_Cell_Voltage,BMS_Feedback_2,0x101,-,0,BMS,16,Intel,Unsigned,0,1,0,0,65535,,<none>,,0x101,Cyclic,0
+LV_Battery_SOC,VCU_HW_IO,0x701,-,8,VCU,8,Intel,Unsigned,0,1,0,0,255,,<none>,,0x701,Cyclic,0
+LV_Battery_Voltage,VCU_HW_IO,0x701,-,16,VCU,16,Intel,Unsigned,0,1,0,0,65535,mV,<none>,,0x701,Cyclic,0
+LV_Battery_Warning,VCU_Diagnostics,0x700,-,21,VCU,1,Intel,Unsigned,0,1,0,0,1,,<none>,,0x700,Cyclic,0
+MCU_NMT_Mode,VCU_Vehicle_Functionality,0x704,-,16,VCU,8,Intel,Unsigned,0,1,0,0,255,,VtSig_MCU_NMT_Mode,,0x704,Cyclic,0
+NMT_Command,MCU_NMT_Broadcast,0x70,-,0,VCU,8,Intel,Unsigned,0,1,0,0,255,,<none>,,0x70,Cyclic,0
+Pack_Current,BMS_Feedback_1,0x100,-,32,BMS,16,Intel,Signed,0,1,64,0,65535,,<none>,,0x100,Cyclic,0
+Pack_SOC,BMS_Feedback_1,0x100,-,16,BMS,16,Intel,Unsigned,0,1,0,0,65535,,<none>,,0x100,Cyclic,0
+Pedal_Sensor_Fail,VCU_Diagnostics,0x700,-,18,VCU,3,Intel,Unsigned,0,1,0,0,7,,VtSig_Pedal_Sensor_Fail,,0x700,Cyclic,0
+Rear_Left_Wheel_Speed,Rear_Wheel_Speed,0x501,-,16,Wireless_Board,16,Intel,Unsigned,0,0.1,0,0,6553.5,rpm,<none>,,0x501,Cyclic,0
+Rear_Right_Wheel_Speed,Rear_Wheel_Speed,0x501,-,0,Wireless_Board,16,Intel,Unsigned,0,0.1,0,0,6553.5,rpm,<none>,,0x501,Cyclic,0
+Rear_Wheel_Speed,Rear_Wheel_Speed,0x501,-,32,Wireless_Board,16,Intel,Unsigned,0,0.01,0,0,655.35,km/h,<none>,,0x501,Cyclic,0
+RegenBool,VCU_Drive_Function,0x707,-,0,VCU,1,Intel,Signed,0,1,0,0,0,,<none>,,0x707,Cyclic,0
+RegenSpeedSig,VCU_Drive_Function,0x707,-,8,VCU,16,Intel,Signed,0,1,0,0,0,,<none>,,0x707,Cyclic,0
+RotationSpeed,SteeringWheelSensor,0x234,-,16,Steering_Wheel_Sensor,8,Intel,Unsigned,0,4,0,0,0,,<none>,,0x234,Cyclic,0
+SEQ_DirectCurrents,HC4_Debug_Demands,0x19137171,-,48,Motor_Control,8,Intel,Unsigned,0,1,0,0,0,,<none>,,0x19137171,Cyclic,0
+Shelf_Button,VCU_HW_IO,0x701,-,4,VCU,1,Intel,Signed,0,1,0,0,0,,<none>,,0x701,Cyclic,0
+Shutdown_Error,Shutdown_Data,0x705,-,0,ECU,1,Intel,Unsigned,0,1,0,0,1,,<none>,,0x705,Cyclic,0
+Shutdown_Error,VCU_Diagnostics,0x700,-,23,VCU,1,Intel,Unsigned,0,1,0,0,1,,<none>,,0x700,Cyclic,0
+TC_on,VCU_Drive_Function,0x707,-,1,VCU,1,Intel,Signed,0,1,0,0,0,,<none>,,0x707,Cyclic,0
+Throttle1_Percent,VCU_Pedal_Percentages,0x702,-,0,VCU,8,Intel,Unsigned,0,1,0,0,255,%,<none>,,0x702,Cyclic,0
+Throttle1_Voltage,VCU_Pedal_Voltages,0x703,-,0,VCU,16,Intel,Unsigned,0,1,0,0,65535,mV,<none>,,0x703,Cyclic,0
+Throttle2_Percentage,VCU_Pedal_Percentages,0x702,-,8,VCU,8,Intel,Unsigned,0,1,0,0,255,%,<none>,,0x702,Cyclic,0
+Throttle2_Voltage,VCU_Pedal_Voltages,0x703,-,32,VCU,16,Intel,Unsigned,0,1,0,0,65535,mV,<none>,,0x703,Cyclic,0
+Throttle_Bool,VCU_Vehicle_Functionality,0x704,-,25,VCU,1,Intel,Unsigned,0,1,0,0,1,,<none>,,0x704,Cyclic,0
+Throttle_Percentage,VCU_Pedal_Percentages,0x702,-,16,VCU,8,Intel,Unsigned,0,1,0,0,255,%,<none>,,0x702,Cyclic,0
+Torque_Limit_Code,HS2_Status_Feedback,0x1919FF71,-,40,Motor_Control,8,Intel,Unsigned,0,1,0,0,0,,<none>,,0x1919FF71,Cyclic,0
+Tractive_System_Startup,VCU_Vehicle_Functionality,0x704,-,24,VCU,1,Intel,Unsigned,0,1,0,0,255,,<none>,,0x704,Cyclic,0
+TSMS_Fault,Shutdown_Data,0x705,-,13,ECU,1,Intel,Unsigned,0,1,0,0,1,,<none>,,0x705,Cyclic,0
+Vehicle_Operation,VCU_Vehicle_Functionality,0x704,-,8,VCU,8,Intel,Unsigned,0,1,0,0,15,,<none>,,0x704,Cyclic,0
+Vehicle_Speed,Front_Wheel_Speeds,0x502,-,32,Sensor_Board,16,Intel,Unsigned,0,0.01,0,0,655.35,,<none>,,0x502,Cyclic,0
+Wheel_Size,VCU_Diagnostics,0x700,-,0,VCU,8,Intel,Unsigned,0,0.1,0,0,25.5,m,<none>,,0x700,Cyclic,0
+ControlWord,HC1_Demands,0x19107171,-,16,VCU,16,Intel,Signed,0,1,0,0,0,,<none>,Control word that sets inverter mode of operation,0x19107171,Cyclic,0
+CS_Command1,HC1_Demands,0x19107171,-,56,VCU,8,Intel,Unsigned,0,1,0,0,255,,<none>,Command1 message checksum,0x19107171,Cyclic,0
+CS_Command2,HC2_Demands,0x19117171,-,56,VCU,8,Intel,Unsigned,0,1,0,0,255,,<none>,Command2 message checksum,0x19117171,Cyclic,0
+CS_CurrentLimits,HC3_Battery_Demands,0x19127171,-,56,VCU,8,Intel,Unsigned,0,1,0,0,255,,<none>,Current limits message checksum,0x19127171,Cyclic,0
+CS_Fault,HS4_Fault_Info,0x191BFF71,-,56,Motor_Control,8,Intel,Unsigned,0,1,0,0,255,,<none>,Command1 message checksum,0x191BFF71,Cyclic,0
+CS_Status,HS2_Status_Feedback,0x1919FF71,-,56,Motor_Control,8,Intel,Unsigned,0,1,0,0,255,,<none>,Status message checksum,0x1919FF71,Cyclic,0
+CS_Temp,HS3_Temperature_Feedback,0x191AFF71,-,56,Motor_Control,8,Intel,Unsigned,0,1,0,0,255,,<none>,Temperature message checksum,0x191AFF71,Cyclic,0
+CS_Torque,HS1_Torque_Feedback,0x1918FF71,-,56,Motor_Control,8,Intel,Unsigned,0,1,0,0,255,,<none>,Torque message checksum,0x1918FF71,Cyclic,0
+DC_Link_Current,HS1_Torque_Feedback,0x1918FF71,-,32,Motor_Control,16,Intel,Signed,0,1,0,-32768,32767,A,<none>,Net current flow measured by the inverter,0x1918FF71,Cyclic,0
+DC_Link_Imax_Discharge,HC3_Battery_Demands,0x19127171,-,0,VCU,16,Intel,Signed,0,1,0,0,1000,A,<none>,Max motor current calculated by VCM (traction),0x19127171,Cyclic,0
+DC_Link_Imax_Recharge,HC3_Battery_Demands,0x19127171,-,16,VCU,16,Intel,Signed,0,1,0,-1000,0,A,<none>,Min motor current calculated by VCM (regen),0x19127171,Cyclic,0
+DC_Link_Voltage,HS3_Temperature_Feedback,0x191AFF71,-,32,Motor_Control,16,Intel,Signed,0,0.0625,0,-2048,2047.9375,V,<none>,,0x191AFF71,Cyclic,0
+FaultCode,HS4_Fault_Info,0x191BFF71,-,0,Motor_Control,16,Intel,Signed,0,1,0,0,0,,<none>,,0x191BFF71,Cyclic,0
+FaultData,HS4_Fault_Info,0x191BFF71,-,16,Motor_Control,24,Intel,Signed,0,1,0,0,0,,<none>,,0x191BFF71,Cyclic,0
+InverterStatus,HS2_Status_Feedback,0x1919FF71,-,32,Motor_Control,8,Intel,Unsigned,0,1,0,0,255,-,<none>,Inverter status (TBD),0x1919FF71,Cyclic,0
+MotorTemperature,HS3_Temperature_Feedback,0x191AFF71,-,16,Motor_Control,16,Intel,Signed,0,1,0,-32768,32767,C,<none>,Measured motor temperature,0x191AFF71,Cyclic,0
+SEQ_Command1,HC1_Demands,0x19107171,-,48,VCU,8,Intel,Unsigned,0,1,0,0,255,,<none>,Command1 message sequence counter,0x19107171,Cyclic,0
+SEQ_Command2,HC2_Demands,0x19117171,-,48,VCU,8,Intel,Unsigned,0,1,0,0,255,,<none>,Command2 message sequence counter,0x19117171,Cyclic,0
+SEQ_CurrentLimits,HC3_Battery_Demands,0x19127171,-,48,VCU,8,Intel,Unsigned,0,1,0,0,255,,<none>,Current limits message sequence counter,0x19127171,Cyclic,0
+SEQ_Fault,HS4_Fault_Info,0x191BFF71,-,48,Motor_Control,8,Intel,Unsigned,0,1,0,0,255,,<none>,Command1 message sequence counter,0x191BFF71,Cyclic,0
+SEQ_Status,HS2_Status_Feedback,0x1919FF71,-,48,Motor_Control,8,Intel,Unsigned,0,1,0,0,255,,<none>,Status message sequence counter,0x1919FF71,Cyclic,0
+SEQ_Temp,HS3_Temperature_Feedback,0x191AFF71,-,48,Motor_Control,8,Intel,Unsigned,0,1,0,0,255,,<none>,Temperature message sequence counter,0x191AFF71,Cyclic,0
+SEQ_Torque,HS1_Torque_Feedback,0x1918FF71,-,48,Motor_Control,8,Intel,Unsigned,0,1,0,0,255,,<none>,Torque message sequence counter,0x1918FF71,Cyclic,0
+Speed_Limit_Forward,HC2_Demands,0x19117171,-,16,VCU,16,Intel,Signed,0,1,0,-32768,32767,RPM,<none>,Maximum forward speed of motor,0x19117171,Cyclic,0
+Speed_Limit_Reverse,HC2_Demands,0x19117171,-,32,VCU,16,Intel,Signed,0,1,0,-32768,32767,RPM,<none>,Maximum reverse speed of motor,0x19117171,Cyclic,0
+Speed_Measured,HS1_Torque_Feedback,0x1918FF71,-,16,Motor_Control,16,Intel,Signed,0,1,0,-32768,32767,RPM,<none>,Measured motor speed by inverter,0x1918FF71,Cyclic,0
+Temperature_Remaining,HS3_Temperature_Feedback,0x191AFF71,-,0,Motor_Control,16,Intel,Signed,0,1,0,-32768,32767,C,<none>,Inverter module temperature,0x191AFF71,Cyclic,0
+Torque_Available_Forward,HS2_Status_Feedback,0x1919FF71,-,0,Motor_Control,16,Intel,Signed,0,0.0625,0,0,0,Nm,<none>,Torque available calculated by inverter,0x1919FF71,Cyclic,0
+Torque_Available_Reverse,HS2_Status_Feedback,0x1919FF71,-,16,Motor_Control,16,Intel,Signed,0,0.0625,0,0,0,Nm,<none>,Torque available calculated by inverter,0x1919FF71,Cyclic,0
+Torque_Measured,HS1_Torque_Feedback,0x1918FF71,-,0,Motor_Control,16,Intel,Signed,0,0.0625,0,0,0,Nm,<none>,Torque calculated by DSP in inverter,0x1918FF71,Cyclic,0
+Torque_Regen_Limit,HC2_Demands,0x19117171,-,0,VCU,16,Intel,Signed,0,0.0625,0,0,0,Nm,<none>,Torque limit specified by VCM,0x19117171,Cyclic,0
+Torque_Request,HC1_Demands,0x19107171,-,0,VCU,16,Intel,Signed,0,0.0625,0,0,0,Nm,<none>,Motor torque requested by VCM,0x19107171,Cyclic,0
+Torque_Traction_Limit,HC1_Demands,0x19107171,-,32,VCU,16,Intel,Signed,0,0.0625,0,0,0,Nm,<none>,Max torque calculated by VCM,0x19107171,Cyclic,0

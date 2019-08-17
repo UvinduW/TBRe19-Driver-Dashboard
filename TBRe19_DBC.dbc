@@ -1,0 +1,399 @@
+VERSION "HIPBNYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY/4/%%%/4/'%**4YYY///"
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+
+BS_:
+
+BU_: Sensor_Board Steering_Wheel_Sensor Accelerometer Dashboard Wireless_Board Shutdown_Circuit BMS MCU Diagnostics Motor_Control VCU
+
+
+BO_ 2147483648 VECTOR__INDEPENDENT_SIG_MSG: 0 Vector__XXX
+ SG_ Test_Sig : 0|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ BrakePot_Voltage : 0|16@1+ (1,0) [0|65535] "mV" Vector__XXX
+ SG_ GPS_Long : 0|16@1+ (1,0) [0|65535] "" Vector__XXX
+ SG_ MCU_Error : 0|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Motor_Temp : 0|8@1+ (1,0) [0|255] "Celsius" Vector__XXX
+ SG_ MCU_Command : 0|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ GPS_Lat : 0|16@1+ (1,0) [0|65535] "" Vector__XXX
+ SG_ MCU_On : 0|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ MCU_Pre_Op : 0|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ MCU_Op : 0|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ MCU_Supply_Voltage : 0|16@1+ (1,0) [0|65535] "V" Vector__XXX
+ SG_ MCU_Target_Velocity : 0|32@1+ (1,0) [0|-1] "V" Vector__XXX
+ SG_ MCU_DC_Power : 0|32@1- (1,0) [0|0] "W" Vector__XXX
+ SG_ MCU_Error_Code : 0|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_Status_Word : 0|16@1+ (1,0) [0|65535] "" Vector__XXX
+ SG_ MCU_DC_Link_Current : 0|32@1- (1,0) [-2147483648|2147483647] "A" Vector__XXX
+ SG_ MCU_DC_Link_Voltage : 0|16@1- (0.1,0) [-32768|32767] "V" Vector__XXX
+ SG_ MCU_Temp : 0|8@1+ (1,0) [0|255] "Celsius" Vector__XXX
+ SG_ MCU_Torque_Actual_Value : 0|16@1- (1,0) [-32768|32767] "" Vector__XXX
+ SG_ MCU_Warning : 0|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ MCU_Config_Error : 0|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Heartbeat : 0|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ SDO_Specifier : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_OD_Sub_Index : 0|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ MCU_OD_Index : 0|16@1+ (1,0) [0|65535] "" Vector__XXX
+ SG_ SDO_Data : 0|32@1- (1,0) [0|-1] "" Vector__XXX
+ SG_ SDO_Data : 0|32@1- (1,0) [0|-1] "" Vector__XXX
+ SG_ MCU_OD_Sub_Index : 0|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ MCU_OD_Index : 0|16@1+ (1,0) [0|65535] "" Vector__XXX
+ SG_ SDO_Specifier : 0|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ RegenSpeedSig : 0|16@1- (1,0) [0|0] "" Vector__XXX
+ SG_ MCU_Torque_Request : 0|16@1- (1,0) [-1000|1000] "" Vector__XXX
+ SG_ MCU_ControlWord : 0|16@1+ (1,0) [0|65535] "" Vector__XXX
+ SG_ NMT_Command_0 : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Vehicle_Speed : 0|16@1+ (0.01,0) [0|655.35] "" Vector__XXX
+ SG_ Rear_Wheel_Speed : 0|16@1+ (0.01,0) [0|655.35] "km/h" Vector__XXX
+ SG_ Front_Left_Wheel_Interval : 0|32@1+ (1,0) [0|-1] "uS" Vector__XXX
+ SG_ Front_Right_Wheel_Interval : 0|32@1+ (1,0) [0|-1] "uS" Vector__XXX
+ SG_ Rear_Left_Wheel_Interval : 0|32@1+ (1,0) [0|-1] "uS" Vector__XXX
+ SG_ Rear_Right_Wheel_Interval : 0|32@1+ (1,0) [0|-1] "uS" Vector__XXX
+
+BO_ 392 MCU_TPDO5: 0 MCU
+
+BO_ 2019 DashBMSReq: 8 Dashboard
+
+BO_ 564 SteeringWheelSensor: 5 Steering_Wheel_Sensor
+ SG_ RotationSpeed : 16|8@1+ (4,0) [0|0] "" Vector__XXX
+ SG_ Acc_Angle : 0|16@1- (0.1,0) [0|0] "Degrees" Vector__XXX
+
+BO_ 1798 VCU_Torque: 5 VCU
+ SG_ Max_Torque : 32|8@1- (1,0) [0|0] "" Vector__XXX
+ SG_ ECU_TorqueAcut : 16|16@1- (0.1,0) [0|0] "Percent" Vector__XXX
+ SG_ ECU_TorqueReq : 0|16@1- (0.1,0) [0|0] "Percent" Vector__XXX
+
+BO_ 380 AccelerometerZ: 8 Accelerometer
+ SG_ Acc_ZAxis : 32|16@1+ (0.0001274,0) [0|0] "" Vector__XXX
+
+BO_ 376 AccelerometerX: 8 Accelerometer
+ SG_ Acc_XAxis : 32|16@1+ (0.0001274,0) [0|0] "" Vector__XXX
+ SG_ Acc_Roll : 0|16@1+ (0.005,0) [0|0] "" Vector__XXX
+
+BO_ 372 AccelerometerY: 8 Accelerometer
+ SG_ Acc_YAxis : 32|16@1+ (0.0001274,0) [0|0] "" Vector__XXX
+ SG_ Acc_Yaw : 0|16@1+ (0.005,0) [0|0] "" Vector__XXX
+
+BO_ 1282 Front_Wheel_Speeds: 6 Sensor_Board
+ SG_ Front_Right_Wheel_Speed : 0|16@1+ (0.1,0) [0|0] "rpm" Vector__XXX
+ SG_ Front_Left_Wheel_Speed : 16|16@1+ (0.1,0) [0|0] "rpm" Vector__XXX
+ SG_ Vehicle_Speed : 32|16@1+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 1281 Rear_Wheel_Speeds: 6 Wireless_Board
+ SG_ Rear_Right_Wheel_Speed : 0|16@1+ (0.1,0) [0|0] "rpm" Vector__XXX
+ SG_ Rear_Left_Wheel_Speed : 16|16@1+ (0.1,0) [0|0] "rpm" Vector__XXX
+ SG_ Rear_Wheel_Speed : 32|16@1+ (1,0) [0|0] "kph" Vector__XXX
+
+BO_ 769 MCU_RPDO2: 8 VCU
+
+BO_ 513 MCU_RPDO1: 0 VCU
+
+BO_ 1077 MCU_TPDO4: 0 MCU
+
+BO_ 338 MCU_TPDO3: 0 MCU
+
+BO_ 569 MCU_TPDO2: 0 MCU
+
+BO_ 272 MCU_TPDO1: 0 MCU
+
+BO_ 257 BMS_Feedback_2: 8 BMS
+ SG_ Avg_Cell_Voltage : 32|16@1+ (0.1,0) [0|6553.5] "mV" Vector__XXX
+ SG_ High_Cell_Voltage : 16|16@1+ (0.1,0) [0|6553.5] "mV" Vector__XXX
+ SG_ High_Cell_ID : 56|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ Low_Cell_Voltage : 0|16@1+ (0.1,0) [0|6553.5] "mV" Vector__XXX
+ SG_ Low_Cell_ID : 48|8@1+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 256 BMS_Feedback_1: 7 BMS
+ SG_ Instant_Pack_Voltage : 0|16@1+ (0.1,0) [0|65535] "" Vector__XXX
+ SG_ Pack_SOC : 16|16@1+ (1,0) [0|65535] "" Vector__XXX
+ SG_ Pack_Current : 32|16@1- (0.1,0) [0|65535] "" Vector__XXX
+ SG_ Acu_Fan : 48|8@1+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 1792 VCU_Diagnostics: 8 VCU
+ SG_ VCU_Year : 48|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ VCU_Version : 56|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ VCU_Month : 40|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ VCU_Day : 35|5@1+ (1,0) [0|31] "" Vector__XXX
+ SG_ Boost_on : 34|1@1- (1,0) [0|0] "" Vector__XXX
+ SG_ TC_on : 33|1@1- (1,0) [0|0] "" Vector__XXX
+ SG_ RegenBool : 32|1@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Fault_ECU_Shutdown : 22|1@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Low_AIR_Status : 20|1@1- (1,0) [0|0] "" Vector__XXX
+ SG_ High_AIR_Status : 21|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ BPPS_Implausibility : 16|1@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Pedal_Sensor_Fail : 24|8@1+ (1,0) [0|7] "" Vector__XXX
+ SG_ APPS_Implausibility : 17|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ APPS_BP_Implausibility : 18|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ GearingRatio : 8|8@1+ (0.1,0) [0|0] "" Vector__XXX
+ SG_ Wheel_Size : 0|8@1+ (0.1,0) [0|25.5] "m" Vector__XXX
+ SG_ Fault_CarShutdown : 23|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ LV_Battery_Warning : 19|1@1+ (1,0) [0|1] "" Vector__XXX
+
+BO_ 1794 VCU_Pedal_Percentages: 7 VCU
+ SG_ BrakePot_Percentage : 40|8@1+ (1,0) [0|255] "%" Vector__XXX
+ SG_ Brake_Percentage : 48|8@1+ (1,0) [0|255] "%" Vector__XXX
+ SG_ Brake2_Percentage : 32|8@1+ (1,0) [0|255] "%" Vector__XXX
+ SG_ Throttle_Percentage : 16|8@1+ (1,0) [0|255] "%" Vector__XXX
+ SG_ Brake1_Percentage : 24|8@1+ (1,0) [0|255] "%" Vector__XXX
+ SG_ Throttle2_Percentage : 8|8@1+ (1,0) [0|255] "%" Vector__XXX
+ SG_ Throttle1_Percent : 0|8@1+ (1,0) [0|255] "%" Vector__XXX
+
+BO_ 1796 VCU_Vehicle_Functionality: 4 VCU
+ SG_ Tractive_System_Startup : 24|1@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ Throttle_Bool : 25|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ MCU_NMT_Mode : 16|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ Control_Word : 0|8@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Vehicle_Operation : 8|8@1+ (1,0) [0|15] "" Vector__XXX
+ SG_ Brake_Bool : 26|1@1+ (1,0) [0|1] "" Vector__XXX
+
+BO_ 1795 VCU_Pedal_Voltages: 8 VCU
+ SG_ Brake2_Voltage : 48|16@1+ (1,0) [0|65535] "mV" Vector__XXX
+ SG_ Brake1_Voltage : 16|16@1+ (1,0) [0|65535] "mV" Vector__XXX
+ SG_ Throttle2_Voltage : 32|16@1+ (1,0) [0|65535] "mV" Vector__XXX
+ SG_ Throttle1_Voltage : 0|16@1+ (1,0) [0|65535] "mV" Vector__XXX
+
+BO_ 1793 VCU_HW_IO: 5 VCU
+ SG_ AccyFanFreq : 32|8@1+ (1,0) [0|0] "Hz" Vector__XXX
+ SG_ Coolant_AccyFan : 6|1@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Console_Z : 1|1@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Consle_Y : 2|1@1- (1,0) [0|0] "Bool" Vector__XXX
+ SG_ Coolant_Pump_Fan : 5|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Buzzer : 7|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ LV_Battery_SOC : 8|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ LV_Battery_Voltage : 16|16@1+ (1,0) [0|65535] "mV" Vector__XXX
+ SG_ Console_RTD : 0|1@1+ (1,0) [0|1] "Bool" Vector__XXX
+ SG_ Console_X : 3|1@1+ (1,0) [0|1] "Bool" Vector__XXX
+
+BO_ 112 MCU_NMT_Broadcast: 1 VCU
+ SG_ NMT_Command : 0|8@1+ (1,0) [0|255] "" Vector__XXX
+
+BO_ 128 MCU_Sync_MSG: 0 VCU
+
+BO_ 2568814449 HS5_Encoder_Info: 8 Motor_Control
+ SG_ Encoder_pos : 0|32@1- (1.5258789063e-005,0) [0|0] "rotations" Vector__XXX
+
+BO_ 2569928561 HD6_Debug_Control_Data_FV: 8 Motor_Control
+ SG_ Debug_Recip_Flux : 48|16@1- (1,0) [0|0] "1/A" Vector__XXX
+ SG_ Debug_Iq_max : 32|16@1- (1,0) [0|0] "A" Vector__XXX
+ SG_ Debug_Lm_Sat : 16|16@1- (1.5258789063e-005,0) [0|0] "H" Vector__XXX
+ SG_ Debug_Slip : 0|16@1- (0.0625,0) [0|0] "rad/s" Vector__XXX
+
+BO_ 2568188273 HC4_Debug_Demands: 8 Motor_Control
+ SG_ CS_DirectCurrents : 56|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ SEQ_DirectCurrents : 48|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Debug_Id_direct_control : 16|16@1- (0.0625,0) [0|0] "A" Vector__XXX
+ SG_ Debug_Iq_direct_control : 0|16@1- (0.0625,0) [0|0] "A" Vector__XXX
+
+BO_ 2569863025 HD5_Debug_Control_Data_PMAC: 8 Motor_Control
+ SG_ Debug_Ls : 48|16@1- (5.9604644775e-008,0) [0|0] "H" Vector__XXX
+ SG_ Debug_Iq_max : 32|16@1- (1,0) [0|0] "A" Vector__XXX
+ SG_ Debug_Iv_lim : 16|16@1- (1,0) [0|0] "A" Vector__XXX
+ SG_ Debug_max_flux : 0|16@1- (1,0) [0|0] "A" Vector__XXX
+
+BO_ 2569797489 HD4_Debug_Temperatures_B: 8 Motor_Control
+ SG_ Debug_Temps_Winding : 56|8@1+ (1,0) [0|0] "degC" Vector__XXX
+ SG_ Debug_Temps_Coolant : 48|8@1+ (1,0) [0|0] "degC" Vector__XXX
+ SG_ Debug_Temps_Normalised : 40|8@1+ (1,0) [0|255] "degC" Vector__XXX
+ SG_ Debug_Temps_Delta_Tj : 32|8@1+ (1,0) [0|255] "degC" Vector__XXX
+ SG_ Debug_Temps_Heatsink : 24|8@1+ (1,0) [0|255] "degC" Vector__XXX
+ SG_ Debug_Temps_Cap_Estimate_Slow : 16|8@1+ (1,0) [0|255] "degC" Vector__XXX
+ SG_ Debug_Temps_Track : 8|8@1+ (1,0) [0|255] "degC" Vector__XXX
+ SG_ Debug_Temps_Cap_Estimate_Fast : 0|8@1+ (1,0) [0|255] "degC" Vector__XXX
+
+BO_ 2569731953 HD3_Debug_Temperatures_A: 8 Motor_Control
+ SG_ Debug_Temps_Motor_Measured : 48|8@1+ (1,0) [0|255] "degC" Vector__XXX
+ SG_ Debug_Temps_Motor_Estimate : 56|8@1+ (1,0) [0|255] "degC" Vector__XXX
+ SG_ Debug_Temps_Junction_5 : 40|8@1+ (1,0) [0|255] "degC" Vector__XXX
+ SG_ Debug_Temps_Junction_4 : 32|8@1+ (1,0) [0|255] "degC" Vector__XXX
+ SG_ Debug_Temps_Junction_3 : 24|8@1+ (1,0) [0|255] "degC" Vector__XXX
+ SG_ Debug_Temps_Junction_2 : 16|8@1+ (1,0) [0|255] "degC" Vector__XXX
+ SG_ Debug_Temps_Junction_1 : 8|8@1+ (1,0) [0|255] "degC" Vector__XXX
+ SG_ Debug_Temps_Junction_0 : 0|8@1+ (1,0) [0|255] "degC" Vector__XXX
+
+BO_ 2569666417 HD2_Debug_Voltages: 8 Motor_Control
+ SG_ Debug_Torque_Control : 48|16@1- (0.0625,0) [0|0] "Nm" Vector__XXX
+ SG_ Debug_Mod_Index : 32|16@1+ (0.00390625,0) [0|0] "%" Vector__XXX
+ SG_ Debug_Uq : 16|16@1- (0.0625,0) [0|0] "V" Vector__XXX
+ SG_ Debug_Ud : 0|16@1- (0.0625,0) [0|0] "V" Vector__XXX
+
+BO_ 2569600881 HD1_Debug_Currents: 8 Motor_Control
+ SG_ Debug_Iq_ref : 48|16@1- (0.0625,0) [0|0] "A" Vector__XXX
+ SG_ Debug_Id_ref : 32|16@1- (0.0625,0) [0|0] "A" Vector__XXX
+ SG_ Debug_Iq_act : 16|16@1- (0.0625,0) [0|0] "A" Vector__XXX
+ SG_ Debug_Id_act : 0|16@1- (0.0625,0) [0|0] "A" Vector__XXX
+
+BO_ 2568748913 HS4_Fault_Info: 8 Motor_Control
+ SG_ CS_Fault : 56|8@1+ (1,0) [0|255] ""  VCU
+ SG_ SEQ_Fault : 48|8@1+ (1,0) [0|255] ""  VCU
+ SG_ FaultData : 16|24@1- (1,0) [0|0] ""  VCU
+ SG_ FaultCode : 0|16@1- (1,0) [0|0] ""  VCU
+
+BO_ 2568617841 HS2_Status_Feedback: 8 Motor_Control
+ SG_ Torque_Limit_Code : 40|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Torque_Available_Reverse : 16|16@1- (0.0625,0) [0|0] "Nm"  VCU
+ SG_ Torque_Available_Forward : 0|16@1- (0.0625,0) [0|0] "Nm"  VCU
+ SG_ SEQ_Status : 48|8@1+ (1,0) [0|255] ""  VCU
+ SG_ CS_Status : 56|8@1+ (1,0) [0|255] ""  VCU
+ SG_ InverterStatus : 32|8@1+ (1,0) [0|255] "-"  VCU
+
+BO_ 2568683377 HS3_Temperature_Feedback: 8 Motor_Control
+ SG_ DC_Link_Voltage : 32|16@1- (0.0625,0) [-2048|2047.9375] "V"  VCU
+ SG_ SEQ_Temp : 48|8@1+ (1,0) [0|255] ""  VCU
+ SG_ CS_Temp : 56|8@1+ (1,0) [0|255] ""  VCU
+ SG_ MotorTemperature : 16|16@1- (1,0) [-32768|32767] "C"  VCU
+ SG_ Temperature_Remaining : 0|16@1- (1,0) [-32768|32767] "C"  VCU
+
+BO_ 2568057201 HC2_Demands: 8 VCU
+ SG_ SEQ_Command2 : 48|8@1+ (1,0) [0|255] ""  Motor_Control
+ SG_ CS_Command2 : 56|8@1+ (1,0) [0|255] ""  Motor_Control
+ SG_ Speed_Limit_Reverse : 32|16@1- (1,0) [-32768|32767] "RPM"  Motor_Control
+ SG_ Torque_Regen_Limit : 0|16@1- (0.0625,0) [0|0] "Nm"  Motor_Control
+ SG_ Speed_Limit_Forward : 16|16@1- (1,0) [-32768|32767] "RPM"  Motor_Control
+
+BO_ 2567991665 HC1_Demands: 8 VCU
+ SG_ SEQ_Command1 : 48|8@1+ (1,0) [0|255] ""  Motor_Control
+ SG_ CS_Command1 : 56|8@1+ (1,0) [0|255] ""  Motor_Control
+ SG_ Torque_Traction_Limit : 32|16@1- (0.0625,0) [0|0] "Nm"  Motor_Control
+ SG_ ControlWord : 16|16@1- (1,0) [0|0] ""  Motor_Control
+ SG_ Torque_Request : 0|16@1- (0.0625,0) [0|0] "Nm"  Motor_Control
+
+BO_ 2568552305 HS1_Torque_Feedback: 8 Motor_Control
+ SG_ DC_Link_Current : 32|16@1- (1,0) [-32768|32767] "A"  VCU
+ SG_ Speed_Measured : 16|16@1- (1,0) [-32768|32767] "RPM"  VCU
+ SG_ SEQ_Torque : 48|8@1+ (1,0) [0|255] ""  VCU
+ SG_ CS_Torque : 56|8@1+ (1,0) [0|255] ""  VCU
+ SG_ Torque_Measured : 0|16@1- (0.0625,0) [0|0] "Nm"  VCU
+
+BO_ 2568122737 HC3_Battery_Demands: 8 VCU
+ SG_ DC_Link_Voltage_Target : 32|16@1- (0.0625,0) [0|0] "V" Vector__XXX
+ SG_ SEQ_CurrentLimits : 48|8@1+ (1,0) [0|255] ""  Motor_Control
+ SG_ CS_CurrentLimits : 56|8@1+ (1,0) [0|255] ""  Motor_Control
+ SG_ DC_Link_Imax_Recharge : 16|16@1- (1,0) [-1000|0] "A"  Motor_Control
+ SG_ DC_Link_Imax_Discharge : 0|16@1- (1,0) [0|1000] "A"  Motor_Control
+
+BO_ 1797 Shutdown_Data: 3 Shutdown_Circuit
+ SG_ Fault_Latched_Shutdown : 1|1@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Fault_PCB_Shutdown : 4|1@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Fault_LatchIMD_Shutdown : 19|1@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Fault_LatchBSPD_Shutdown : 20|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Fault_LatchBMS_Shutdown : 18|1@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Fault_Interlock_Shutdown : 11|1@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Fault_Inertia_Shutdown : 7|1@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Fault_Fuse_Shutdown : 3|1@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Fault_ECU_Shutdown : 12|1@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Fault_Current : 16|1@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Fault_CarShutdown : 0|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Fault_BSPD : 17|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Fault_Brake : 15|1@1- (1,0) [0|0] "" Vector__XXX
+ SG_ Fault_Any : 2|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Fault_TSMS_Shutdown : 9|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Fault_HVD_Shutdown : 10|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Fault_BOTS_Shutdown : 5|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Fault_IMD : 14|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Fault_BMS : 13|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Fault_ESTP_RollHoop_Shutdown : 8|1@1+ (1,0) [0|1] "" Vector__XXX
+ SG_ Fault_ESTP_Dash_Shutdown : 6|1@1+ (1,0) [0|1] "" Vector__XXX
+
+BO_ 258 BMS_Feedback_3: 8 Vector__XXX
+ SG_ Avg_pack_temp : 0|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Highest_pack_temp : 8|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Lowest_pack_temp : 16|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Highest_temp_ID : 24|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Lowest_temp_ID : 32|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Heatsink_temp : 40|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ LV_Battery : 48|16@1+ (0.1,0) [0|0] "" Vector__XXX
+
+
+CM_ BU_ Motor_Control "Torque generating inverter";
+CM_ BU_ VCU "Central vehicle control unit, responsible for generating torque demands for the inverter";
+CM_ BO_ 2147483648 "This is a message for not used signals, created by Vector CANdb++ DBC OLE DB Provider.";
+CM_ SG_ 1792 Low_AIR_Status "1 - Closed
+0 - Open";
+CM_ SG_ 1792 High_AIR_Status "1 - Closed
+0 - Open";
+CM_ SG_ 2569666417 Debug_Torque_Control "Torque that is to be used as the control value for caluclating current references";
+CM_ SG_ 2568748913 CS_Fault "Command1 message checksum";
+CM_ SG_ 2568748913 SEQ_Fault "Command1 message sequence counter";
+CM_ BO_ 2568617841 "To command the anciliary switch";
+CM_ SG_ 2568617841 Torque_Available_Reverse "Torque available calculated by inverter";
+CM_ SG_ 2568617841 Torque_Available_Forward "Torque available calculated by inverter";
+CM_ SG_ 2568617841 SEQ_Status "Status message sequence counter";
+CM_ SG_ 2568617841 CS_Status "Status message checksum";
+CM_ SG_ 2568617841 InverterStatus "Inverter status (TBD)";
+CM_ BO_ 2568683377 "To command the anciliary switch";
+CM_ SG_ 2568683377 SEQ_Temp "Temperature message sequence counter";
+CM_ SG_ 2568683377 CS_Temp "Temperature message checksum";
+CM_ SG_ 2568683377 MotorTemperature "Measured motor temperature";
+CM_ SG_ 2568683377 Temperature_Remaining "Inverter module temperature";
+CM_ BO_ 2568057201 "Active derates and values";
+CM_ SG_ 2568057201 SEQ_Command2 "Command2 message sequence counter";
+CM_ SG_ 2568057201 CS_Command2 "Command2 message checksum";
+CM_ SG_ 2568057201 Speed_Limit_Reverse "Maximum reverse speed of motor";
+CM_ SG_ 2568057201 Torque_Regen_Limit "Torque limit specified by VCM";
+CM_ SG_ 2568057201 Speed_Limit_Forward "Maximum forward speed of motor";
+CM_ BO_ 2567991665 "Active derates and values";
+CM_ SG_ 2567991665 SEQ_Command1 "Command1 message sequence counter";
+CM_ SG_ 2567991665 CS_Command1 "Command1 message checksum";
+CM_ SG_ 2567991665 Torque_Traction_Limit "Max torque calculated by VCM";
+CM_ SG_ 2567991665 ControlWord "Control word that sets inverter mode of operation";
+CM_ SG_ 2567991665 Torque_Request "Motor torque requested by VCM";
+CM_ BO_ 2568552305 "To command the anciliary switch";
+CM_ SG_ 2568552305 DC_Link_Current "Net current flow measured by the inverter";
+CM_ SG_ 2568552305 Speed_Measured "Measured motor speed by inverter";
+CM_ SG_ 2568552305 SEQ_Torque "Torque message sequence counter";
+CM_ SG_ 2568552305 CS_Torque "Torque message checksum";
+CM_ SG_ 2568552305 Torque_Measured "Torque calculated by DSP in inverter";
+CM_ BO_ 2568122737 "Response back to BMS";
+CM_ SG_ 2568122737 DC_Link_Voltage_Target "Min motor current calculated by VCM (regen)";
+CM_ SG_ 2568122737 SEQ_CurrentLimits "Current limits message sequence counter";
+CM_ SG_ 2568122737 CS_CurrentLimits "Current limits message checksum";
+CM_ SG_ 2568122737 DC_Link_Imax_Recharge "Min motor current calculated by VCM (regen)";
+CM_ SG_ 2568122737 DC_Link_Imax_Discharge "Max motor current calculated by VCM (traction)";
+BA_DEF_ SG_  "GenSigSendType" ENUM  "Cyclic","OnWrite","OnWriteWithRepetition","OnChange","OnChangeWithRepetition","IfActive","IfActiveWithRepetition","NoSigSendType";
+BA_DEF_ SG_  "GenSigInactiveValue" INT 0 0;
+BA_DEF_ BO_  "GenMsgCycleTime" INT 0 0;
+BA_DEF_ BO_  "GenMsgSendType" ENUM  "Cyclic","not_used","not_used","not_used","not_used","Cyclic","not_used","IfActive","NoMsgSendType";
+BA_DEF_ BU_  "NmStationAddress" HEX 0 0;
+BA_DEF_  "DBName" STRING ;
+BA_DEF_  "BusType" STRING ;
+BA_DEF_DEF_  "GenSigSendType" "Cyclic";
+BA_DEF_DEF_  "GenSigInactiveValue" 0;
+BA_DEF_DEF_  "GenMsgCycleTime" 0;
+BA_DEF_DEF_  "GenMsgSendType" "NoMsgSendType";
+BA_DEF_DEF_  "NmStationAddress" 0;
+BA_DEF_DEF_  "DBName" "";
+BA_DEF_DEF_  "BusType" "CAN";
+BA_ "NmStationAddress" BU_ Sensor_Board 7;
+BA_ "NmStationAddress" BU_ Steering_Wheel_Sensor 9;
+BA_ "NmStationAddress" BU_ Accelerometer 8;
+BA_ "NmStationAddress" BU_ Dashboard 4;
+BA_ "NmStationAddress" BU_ Wireless_Board 6;
+BA_ "NmStationAddress" BU_ Shutdown_Circuit 5;
+BA_ "NmStationAddress" BU_ BMS 3;
+BA_ "NmStationAddress" BU_ MCU 1;
+BA_ "NmStationAddress" BU_ Diagnostics 11;
+BA_ "NmStationAddress" BU_ Motor_Control 10;
+BA_ "NmStationAddress" BU_ VCU 2;
+BA_ "DBName" "TBRe19";
+VAL_ 1792 Pedal_Sensor_Fail 5 "Complete pedal box failure" 4 "Brake sensor failure" 3 "Both throttles failed" 2 "Throttle sensor 2 failure" 1 "Throttle sensor 1 failure" 0 "No error, pedal sensors ok" ;
+VAL_ 1796 MCU_NMT_Mode 3 "Operational" 2 "Pre-Operational" 1 "Reset" 0 "Stopped" ;

@@ -1,4 +1,5 @@
 #include "dash.h"
+#include <QBitArray>
 //#include "signallist.h"
 #define _USE_MATH_DEFINES
 #include <math.h>
@@ -11,6 +12,26 @@
 #ifdef PIMODE
     #include <wiringPi.h>
 #endif
+
+// Setup the CAN IDs
+// Standard
+#define BMS_Feedback_1 0x100
+#define BMS_Feedback_2 0x101
+#define BMS_Feedback_3 0x102
+#define VCU_1 0x503
+#define VCU_HW_IO 0x701
+#define VCU_Vehicle_Functionality 0x704
+#define Shutdown_Data 0x705
+
+//Extended
+#define HD4_Debug_Temperatures_B 0x192BFF71
+#define HS3_Temperature_Feedback 0x191AFF71
+#define HS1_Torque_Feedback 0x1918FF71
+
+//Shutdown message configuration
+#define fault_active 1
+#define fault_free 0
+
 
 dash::dash(QObject *parent): QObject(parent)
 {
@@ -32,21 +53,21 @@ dash::dash(QObject *parent): QObject(parent)
         QCanBusDevice::Filter motorID;
         QCanBusDevice::Filter motorSpeed;
         QCanBusDevice::Filter inverterTemp;
-        filterList.append(setCanFilter(0x01A));        
-        filterList.append(setCanFilter(0x100));
-        filterList.append(setCanFilter(0x101));
-        filterList.append(setCanFilter(0x102));
-        filterList.append(setCanFilter(0x503));
-        filterList.append(setCanFilter(0x704));
-        filterList.append(setCanFilter(0x705));
-        filterList.append(setCanFilter(0x701));
-        inverterTemp.frameId = 0x192BFF71;
+//        filterList.append(setCanFilter(0x01A));
+        filterList.append(setCanFilter(BMS_Feedback_1));
+        filterList.append(setCanFilter(BMS_Feedback_2));
+        filterList.append(setCanFilter(BMS_Feedback_3));
+        filterList.append(setCanFilter(VCU_1));
+        filterList.append(setCanFilter(VCU_HW_IO));
+        filterList.append(setCanFilter(VCU_Vehicle_Functionality));
+        filterList.append(setCanFilter(Shutdown_Data));
+        inverterTemp.frameId = HD4_Debug_Temperatures_B;
         inverterTemp.format = QCanBusDevice::Filter::MatchBaseAndExtendedFormat;
         filterList.append(inverterTemp);
-        motorID.frameId = 0x191AFF71;
+        motorID.frameId = HS3_Temperature_Feedback;
         motorID.format = QCanBusDevice::Filter::MatchBaseAndExtendedFormat;
         filterList.append(motorID);
-        motorSpeed.frameId = 0x1918FF71;
+        motorSpeed.frameId = HS1_Torque_Feedback;
         motorSpeed.format = QCanBusDevice::Filter::MatchBaseAndExtendedFormat;
         filterList.append(motorSpeed);
 
@@ -67,13 +88,14 @@ dash::dash(QObject *parent): QObject(parent)
     }
     this->m_timer = new QTimer(this);
     this->m_timer->setInterval(2000);
-    connect(this->m_timer,&QTimer::timeout,this,&dash::testActivity);
+    connect(this->m_timer,&QTimer::timeout,this,&dash::readButton);
     this->m_timer->start();
 }
 
 void dash::readFrames()
 {
     int value;
+
   //  qDebug() << "Got CANned";
     // Read frames
     while (device->framesAvailable() > 0)
@@ -81,6 +103,7 @@ void dash::readFrames()
         // Retrieve frame
         QCanBusFrame frame = device->readFrame();
         const QByteArray payload = frame.payload();
+        QBitArray shutdownBits(payload.count()*8);
 
         if(frame.isValid())
         {
@@ -92,14 +115,14 @@ void dash::readFrames()
 //                    emit speedChanged();
 //                    qDebug() << m_speed;
 //                    break;
-                case 0x503:
+                case VCU_1:
 //                    payload = frame.payload();
                     value = payload[4] * pow(16,6) + payload[5] * pow(16,4) + payload[6] * pow(16,2) + payload[7];
                     m_speed = M_PI * 0.445 * 3600 / ( value * 20 * 1000 / 1000000);
 //                    emit speedChanged();
                     break;
 
-                case 0x100:
+                case BMS_Feedback_1:
                     value = payload[1] * pow(16,2) + payload[0];
                     m_hvVoltage = value * 0.1;
 //                  qDebug()<< "HV Voltage: " << m_hvVoltage;
@@ -115,44 +138,94 @@ void dash::readFrames()
                     emit powerChanged();
                     break;
 
-                case 0x101:
+                case BMS_Feedback_2:
                     value = payload[1] * pow(16,2) + payload[0];
                     m_cellVoltage = value * 0.0001;
                     emit cellVoltageChanged();
                     break;
 
-                case 0x102:
+                case BMS_Feedback_3:
                     value = payload[1];
                     m_maxCellTemp = value;
                     emit maxCellTempChanged();
                     break;
 
-                case 0x704:
-                    m_vehicleMode = payload[1];
-                    emit vehicleModeChanged();
-                    break;
-
-                case 0x705:
-                    m_shutdownESTP = payload[6];
-                    emit shutdownESTPChanged();
-                    emit dash::shutdownESTPChanged();
-                    break;
-
-
-                case 0x701:
+                case VCU_HW_IO:
                     value = payload[3] * pow(16,2) + payload[2];
                     m_lvVoltage = value / 1000;
                     emit lvVoltageChanged();
                     break;
 
-                case 0x192BFF71:
+                case VCU_Vehicle_Functionality:
+                    m_vehicleMode = payload[1];
+                    emit vehicleModeChanged();
+                    break;
+
+                case Shutdown_Data:
+
+                    // ByteArray to BitArray code from: https://wiki.qt.io/Working_with_Raw_Data
+                    // Create a bit array of the appropriate size
+
+
+                    // Convert from QByteArray to QBitArray
+                    for(int i=0; i<payload.count(); ++i) {
+                        for(int b=0; b<8;b++) {
+                            shutdownBits.setBit( i*8+b, payload.at(i)&(1<<(7-b)) );
+                        }
+                    }
+
+                    // Check for normal shutdowns first
+                    m_shutdownFuse = shutdownBits[3] == fault_active;
+                    m_shutdownPCB = shutdownBits[4] == fault_active;
+                    m_shutdownBOTS = shutdownBits[5] == fault_active;
+                    m_shutdownESTP = shutdownBits[6] == fault_active || payload[8] == fault_active;  // or
+                    m_shutdownIntertia = shutdownBits[7] == fault_active;
+                    m_shutdownTSMS = shutdownBits[9] == fault_active;
+                    m_shutdownHVD = shutdownBits[10] == fault_active;
+                    m_shutdownINTLK = shutdownBits[11] == fault_active;
+                    m_shutdownECU = shutdownBits[12] == fault_active;
+                    m_shutdownBMS = shutdownBits[13] == fault_active;
+                    m_shutdownIMD = shutdownBits[14] == fault_active;
+                    m_shutdownBSPD = shutdownBits[17] == fault_active;
+
+                    // Now check for latching shutdowns
+                    if (shutdownBits[18] == fault_active)
+                    {
+                        m_shutdownBMS = 2;
+                    }
+                    if (shutdownBits[19] == fault_active)
+                    {
+                        m_shutdownIMD = 2;
+                    }
+                    if (shutdownBits[20] == fault_active)
+                    {
+                        m_shutdownBSPD = 2;
+                    }
+
+
+                    emit shutdownFuseChanged();
+                    emit shutdownPCBChanged();
+                    emit shutdownBOTSChanged();
+                    emit shutdownESTPChanged();
+                    emit shutdownIntertiaChanged();
+                    emit shutdownTSMSChanged();
+                    emit shutdownHVDChanged();
+                    emit shutdownINTLKChanged();
+                    emit shutdownECUChanged();
+                    emit shutdownBMSChanged();
+                    emit shutdownIMDChanged();
+                    emit shutdownBSPDChanged();
+
+                    break;
+
+                case HD4_Debug_Temperatures_B:
                     // Inverter temp
                     value = payload[3];
                     m_inverterTemp = value;
                     emit inverterTempChanged();
                     break;
 
-                case 0x1918FF71:
+                case HS1_Torque_Feedback:
                     value = payload[3] * pow(16,2) + payload[2];
                     // Account for the fact that the value is signed
                     value *= 1;
@@ -164,13 +237,13 @@ void dash::readFrames()
 //                    qDebug() << "Raw motor speed: " << value;
                             m_speed = value * 0.02872;
                     if (m_speed <= 0){ m_speed = 0;}
-                    if (m_speed > 200){ m_speed -= 941.1;}
+                    if (m_speed > 200){ m_speed -= 941.1;} // Fix when reversing
 
                     emit speedChanged();
                     break;
 
 
-                case 0x191AFF71:
+                case HS3_Temperature_Feedback:
                     value = payload[3] * pow(16,2) + payload[2];
                     // Account for the fact that the value is signed
                     if (value >= 32768)
@@ -237,7 +310,7 @@ QCanBusDevice::Filter dash::setCanFilter(const unsigned short &id)
     return filter;
 }
 
-void dash::testActivity()
+void dash::readButton()
 {
 
 //    m_displayMode += 1;

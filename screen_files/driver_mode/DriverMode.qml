@@ -19,18 +19,18 @@ Item {
     property color backgroundColour: "#181818"
     property int airValue: 0
     property int lvBars: 1
-    property int bspd: 0
-    property int imd: 0
-    property int bms: 0
-    property int ecu: 0
-    property int inertia: 0
-    property int bots: 0
-    property int fuse: 0
-    property int pcb: 0
-    property int estop: 0
-    property int tsms: 0
-    property int hvd: 0
-    property int interlock: 0
+    property int bspd: dash.shutdownBSPD
+    property int imd: dash.shutdownIMD
+    property int bms: dash.shutdownBMS
+    property int ecu: dash.shutdownECU
+    property int inertia: dash.shutdownIntertia
+    property int bots: dash.shutdownBOTS
+    property int fuse: dash.shutdownFuse
+    property int pcb: dash.shutdownPCB
+    property int estop: dash.shutdownESTP
+    property int tsms: dash.shutdownTSMS
+    property int hvd: dash.shutdownHVD
+    property int interlock: dash.shutdownINTLK
     property int tweak: 400
     property int danger: 0 //imd? 1: 0
     property int showInnerMarkings: 0

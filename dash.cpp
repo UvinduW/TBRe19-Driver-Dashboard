@@ -53,11 +53,13 @@ dash::dash(QObject *parent): QObject(parent)
         QCanBusDevice::Filter motorID;
         QCanBusDevice::Filter motorSpeed;
         QCanBusDevice::Filter inverterTemp;
+        QCanBusDevice::Filter inverterStatus;
 //        filterList.append(setCanFilter(0x01A));
         filterList.append(setCanFilter(BMS_Feedback_1));
         filterList.append(setCanFilter(BMS_Feedback_2));
         filterList.append(setCanFilter(BMS_Feedback_3));
         filterList.append(setCanFilter(VCU_1));
+        filterList.append(setCanFilter(VCU_Diagnostics));
         filterList.append(setCanFilter(VCU_HW_IO));
         filterList.append(setCanFilter(VCU_Vehicle_Functionality));
         filterList.append(setCanFilter(Shutdown_Data));
@@ -70,6 +72,9 @@ dash::dash(QObject *parent): QObject(parent)
         motorSpeed.frameId = HS1_Torque_Feedback;
         motorSpeed.format = QCanBusDevice::Filter::MatchBaseAndExtendedFormat;
         filterList.append(motorSpeed);
+        inverterStatus.frameId = HS2_Status_Feedback;
+        inverterStatus.format = QCanBusDevice::Filter::MatchBaseAndExtendedFormat;
+        filterList.append(inverterStatus);
 
 
         this->device->setConfigurationParameter(QCanBusDevice::RawFilterKey, QVariant::fromValue(filterList));

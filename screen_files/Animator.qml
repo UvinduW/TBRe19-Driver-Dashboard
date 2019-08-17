@@ -7,7 +7,7 @@ Item {
     property int vehicleSpeed: 0
     property int vehiclePower: 0
     property int vehicleStatus: 1
-    property double hvVoltage: 0
+    property double bmsVoltage: 0
     property int maxCellTemp: 0
     property int lvBars: 1
     property int cellBars: 1
@@ -131,7 +131,7 @@ Item {
     PropertyAnimation {
         id: animHVSoc
         target: animator
-        property: "hvVoltage"
+        property: "bmsVoltage"
         from: 200
         to: 428.4
         duration: 2700

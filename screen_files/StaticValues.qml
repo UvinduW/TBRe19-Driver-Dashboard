@@ -4,7 +4,7 @@ Item {
     property int vehicleSpeed: 87
     property int vehiclePower: 65
     property int vehicleStatus: 3
-    property double hvVoltage: 426.8
+    property double bmsVoltage: 426.8
     property int maxCellTemp: 25
     property int lvBars: 3
     property int cellBars: 3

@@ -6,9 +6,11 @@ Rectangle {
     property int titleSize: 25
     property int itemSize: 20
     color: backgroundColour
+    radius: 10
     ColumnLayout {
 //        anchors.fill: parent
         spacing: 20
+        anchors.centerIn: parent
         Text {
             id: txtInverter
             Layout.alignment: Qt.AlignCenter
@@ -34,7 +36,7 @@ Rectangle {
                 }
                 Text{
                     Layout.alignment: Qt.AlignRight
-                    text: dash.motorTemp + " °C"
+                    text: dash.inverterTemp + " °C"
                     font.pixelSize: itemSize
                     font.bold: true
                     font.family: "Eurostile"
@@ -52,7 +54,7 @@ Rectangle {
                 }
                 Text{
                     Layout.alignment: Qt.AlignRight
-                    text: dash.motorVoltage + " V"
+                    text: dash.inverterVoltage + " V"
                     font.pixelSize: itemSize
                     font.bold: true
                     font.family: "Eurostile"
@@ -70,7 +72,7 @@ Rectangle {
                 }
                 Text{
                     Layout.alignment: Qt.AlignRight
-                    text: "200 A"
+                    text: dash.inverterCurrent + " A"
                     font.pixelSize: itemSize
                     font.bold: true
                     font.family: "Eurostile"
@@ -88,7 +90,7 @@ Rectangle {
                 }
                 Text{
                     Layout.alignment: Qt.AlignRight
-                    text: "100 kW"
+                    text: dash.inverterPower + " kW"
                     font.pixelSize: itemSize
                     font.bold: true
                     font.family: "Eurostile"
@@ -106,7 +108,7 @@ Rectangle {
                 }
                 Text{
                     Layout.alignment: Qt.AlignRight
-                    text: "Good"
+                    text: dash.inverterStatus
                     font.pixelSize: itemSize
                     font.bold: true
                     font.family: "Eurostile"

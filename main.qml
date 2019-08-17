@@ -72,7 +72,7 @@ ApplicationWindow {
             vehiclePower = 0
             vehicleStatus = 1
             maxCellTemp = 0
-            hvVoltage = 0
+            bmsVoltage = 0
             lvBars = 1
             airStatus = 0
             lvVoltage = 0
@@ -116,12 +116,12 @@ ApplicationWindow {
             power: dash.power
             vehicleMode: dash.vehicleMode
 //            maxCellTemp: animatedVals.maxCellTemp
-            hvVoltage: dash.hvVoltage
+            bmsVoltage: dash.bmsVoltage
             backgroundColour: "#181818"
 //            lvBars: animatedVals.lvBars
 //            airValue: animatedVals.airStatus
             lvVoltage: dash.lvVoltage
-            cellVoltage: dash.cellVoltage
+            cellVoltage: dash.avgCellVoltage
 //            bspd: animatedVals.bspd
 //            imd: animatedVals.imd
 //            bms: animatedVals.bms

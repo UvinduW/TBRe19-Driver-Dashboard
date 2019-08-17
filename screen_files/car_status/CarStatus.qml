@@ -5,6 +5,8 @@ import QtGraphicalEffects 1.0
 
 Item {
     property color backgroundColour: "#181818"
+    property int boxHeight: 230
+    property int boxWidth: 280
     Text {
         id: txtTitle
         text: qsTr("Did you see that ludicrous display last night")
@@ -33,10 +35,11 @@ Item {
 //            anchors.fill: parent
             anchors.leftMargin: 10
             anchors.rightMargin: 10
-            spacing: 20
+            spacing: 40
             Rectangle{
-                height: 220
-                width: 260
+                height: boxHeight
+                width: boxWidth
+                radius: 20
                 color: "transparent"
                 RectangularGlow{
                     anchors.fill: motor
@@ -50,8 +53,9 @@ Item {
                 }
             }
             Rectangle{
-                height: 220
-                width: 260
+                height: boxHeight
+                width: boxWidth
+                radius: 20
                 color: "transparent"
                 RectangularGlow{
                     anchors.fill: inverter
@@ -61,6 +65,38 @@ Item {
                 }
                 InverterStatus{
                     id: inverter
+                    anchors.fill: parent
+                }
+            }
+            Rectangle{
+                height: boxHeight
+                width: boxWidth
+                radius: 20
+                color: "transparent"
+                RectangularGlow{
+                    anchors.fill: bms
+                    glowRadius: 10
+                    spread: 0.2
+                    color: "cyan"
+                }
+                BMSStatus{
+                    id: bms
+                    anchors.fill: parent
+                }
+            }
+            Rectangle{
+                height: boxHeight
+                width: boxWidth * 2
+                radius: 20
+                color: "transparent"
+                RectangularGlow{
+                    anchors.fill: cellStatus
+                    glowRadius: 10
+                    spread: 0.2
+                    color: "cyan"
+                }
+                CellStatus{
+                    id: cellStatus
                     anchors.fill: parent
                 }
             }

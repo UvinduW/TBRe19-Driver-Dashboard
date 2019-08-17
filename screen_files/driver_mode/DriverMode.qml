@@ -5,16 +5,16 @@ import QtGraphicalEffects 1.0
 
 Item {
     id: driverScreen
-    property int power: 60
-    property int speed: 100
+    property int power: dash.power
+    property int speed: dash.speed
     property bool regen: false
     property int regenPower: 10
     property int vehicleMode: dash.vehicleMode
-    property double hvVoltage: 75
+    property double bmsVoltage: dash.bmsVoltage
     property int maxCellTemp: dash.maxCellTemp
-    property double lvVoltage: 20
+    property double lvVoltage: dash.lvVoltage
     property int inverterTemp: dash.inverterTemp
-    property double cellVoltage: 3.7
+    property double cellVoltage: dash.avgCellVoltage
     property int cellBars: 1
     property color backgroundColour: "#181818"
     property int airValue: 0
@@ -32,7 +32,9 @@ Item {
     property int hvd: dash.shutdownHVD
     property int interlock: dash.shutdownINTLK
     property int tweak: 400
-    property int danger: 0 //imd? 1: 0
+    property int inverterReset: dash.inverterReset
+    property int danger: imd? 1: inverterReset? 1: 0
+
     property int showInnerMarkings: 0
     property color startupSpeedColour: "#005dab"
     property color normalSpeedColour: "cyan"
@@ -75,6 +77,25 @@ Item {
             anchors.fill: parent
             opacity: 0.06
             visible: true
+        }
+        Rectangle{
+            id: dangerRect
+            color: "#B3000000"
+            anchors.centerIn: parent
+            width: txtEmergency.width * 1.2
+            height: txtEmergency.height * 1.2
+            radius: 20
+            visible: danger
+            z:3
+            Text{
+                id: txtEmergency
+                anchors.centerIn: parent
+                font.pixelSize: 60
+                font.bold: true
+                font.family: "Eurostile"
+                text: imd? "DANGER: IMD ACTIVATED" : "WARNING: RESET INVERTER"
+                color: imd? "red" : "orange"
+            }
         }
 
 //        RectangularGlow{
@@ -230,8 +251,8 @@ Item {
                 lowColour: "red"
                 barLabel: "HV"
                 units: " V"
-                value: hvVoltage
-                secondValue: hvVoltage/100
+                value: bmsVoltage
+                secondValue: bmsVoltage/100
                 displaySecondVal:0
                 maxValue: 428.4
                 minValue: 200

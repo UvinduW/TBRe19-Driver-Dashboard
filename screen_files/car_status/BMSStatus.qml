@@ -9,17 +9,17 @@ Rectangle {
     radius: 10
     ColumnLayout {
 //        anchors.fill: parent
-        anchors.centerIn: parent
         spacing: 20
+        anchors.centerIn: parent
         Text {
-            id: txtMotor
+            id: txtInverter
             Layout.alignment: Qt.AlignCenter
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: titleSize
             font.bold: true
             font.family: "Eurostile"
             color: "white"
-            text: qsTr("Motor Status")
+            text: qsTr("BMS Status")
         }
         ColumnLayout {
             id: statusGrid
@@ -28,7 +28,7 @@ Rectangle {
             RowLayout{
                 width: parent.width
                 Text{
-                    text: "Motor Temp: "
+                    text: "Heatsink Temp: "
                     font.pixelSize: itemSize
                     font.bold: true
                     font.family: "Eurostile"
@@ -36,7 +36,7 @@ Rectangle {
                 }
                 Text{
                     Layout.alignment: Qt.AlignRight
-                    text: dash.motorTemp + " °C"
+                    text: dash.bmsTemp + " °C"
                     font.pixelSize: itemSize
                     font.bold: true
                     font.family: "Eurostile"
@@ -46,7 +46,7 @@ Rectangle {
             RowLayout{
                 width: parent.width
                 Text{
-                    text: "Motor Speed: "
+                    text: "BMS Voltage: "
                     font.pixelSize: itemSize
                     font.bold: true
                     font.family: "Eurostile"
@@ -54,7 +54,7 @@ Rectangle {
                 }
                 Text{
                     Layout.alignment: Qt.AlignRight
-                    text: dash.motorSpeed + " RPM"
+                    text: dash.bmsVoltage + " V"
                     font.pixelSize: itemSize
                     font.bold: true
                     font.family: "Eurostile"
@@ -64,7 +64,7 @@ Rectangle {
             RowLayout{
                 width: parent.width
                 Text{
-                    text: "Motor Torque: "
+                    text: "BMS Current: "
                     font.pixelSize: itemSize
                     font.bold: true
                     font.family: "Eurostile"
@@ -72,7 +72,7 @@ Rectangle {
                 }
                 Text{
                     Layout.alignment: Qt.AlignRight
-                    text: dash.motorTorque + " Nm"
+                    text: dash.bmsCurrent + " A"
                     font.pixelSize: itemSize
                     font.bold: true
                     font.family: "Eurostile"
@@ -82,7 +82,7 @@ Rectangle {
             RowLayout{
                 width: parent.width
                 Text{
-                    text: "Motor Power: "
+                    text: "BMS Power: "
                     font.pixelSize: itemSize
                     font.bold: true
                     font.family: "Eurostile"
@@ -90,7 +90,7 @@ Rectangle {
                 }
                 Text{
                     Layout.alignment: Qt.AlignRight
-                    text: dash.motorPower + " kW"
+                    text: dash.power + " kW"
                     font.pixelSize: itemSize
                     font.bold: true
                     font.family: "Eurostile"
@@ -100,7 +100,7 @@ Rectangle {
             RowLayout{
                 width: parent.width
                 Text{
-                    text: "Motor Status: "
+                    text: "BMS Status: "
                     font.pixelSize: itemSize
                     font.bold: true
                     font.family: "Eurostile"

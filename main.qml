@@ -3,14 +3,16 @@ import QtQuick.Controls 2.2
 //import QtQuick.VirtualKeyboard 2.4
 import QtGraphicalEffects 1.0
 import "screen_files/driver_mode"
+import "screen_files/car_status"
 import "screen_files"
 //import QtMultimedia 5.8
 
 
 ApplicationWindow {
     id: window
-    property int dispMode: dash.displayMode
+    property int dispMode: 0
     property int startup: 0
+
 //    onDispModeChanged: {window.dispMode == 0? window.startup = 1: window.startup = 0}
 
     visible: true
@@ -93,11 +95,19 @@ ApplicationWindow {
 
     SwipeView {
         id: swipeView
+        property int viewIndex: dash.displayMode
+        onViewIndexChanged: {
+            setCurrentIndex(viewIndex);
+            console.log(swipeView.currentIndex);
+                             }
+//        onHeightChanged: setCurrentIndex(2)
+//        onCurrentIndexChanged: {console.log("swipeView.currentIndex")}
         anchors.fill: parent
         transform: Rotation {
         angle: 0
         origin.x: window.width / 2
         origin.y: window.height / 2
+
         }
         DriverMode {
             id:driver_mode
@@ -203,9 +213,14 @@ ApplicationWindow {
             }
         }
 
+        CarStatus{
+
+        }
+
+
         focus: true
         Keys.enabled: true
-        Keys.onPressed: Qt.quit()
+//        Keys.onPressed: Qt.quit()
 
     }
 

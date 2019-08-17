@@ -1,5 +1,5 @@
 #include "dash.h"
-#include "signallist.h"
+//#include "signallist.h"
 #define _USE_MATH_DEFINES
 #include <math.h>
 #define PI 3.1415926536
@@ -17,9 +17,10 @@ dash::dash(QObject *parent): QObject(parent)
     #ifdef PIMODE
         wiringPiSetup () ;
         pinMode(1, OUTPUT);
-        pinMode(0, INPUT);
+        pinMode(3, INPUT);
 //        prevTime = QDateTime::currentMSecsSinceEpoch();
     #endif
+    emit displayModeChanged();
     if(QCanBus::instance()->plugins().contains("socketcan"))
     {
         // Create CAN bus decice and connect to can0 via SocketCAN plugin
@@ -28,12 +29,27 @@ dash::dash(QObject *parent): QObject(parent)
 
         // Apply filters to CAN Bus device
         QList<QCanBusDevice::Filter> filterList;
+        QCanBusDevice::Filter motorID;
+        QCanBusDevice::Filter motorSpeed;
+        QCanBusDevice::Filter inverterTemp;
         filterList.append(setCanFilter(0x01A));        
         filterList.append(setCanFilter(0x100));
         filterList.append(setCanFilter(0x101));
+        filterList.append(setCanFilter(0x102));
         filterList.append(setCanFilter(0x503));
         filterList.append(setCanFilter(0x704));
+        filterList.append(setCanFilter(0x705));
         filterList.append(setCanFilter(0x701));
+        inverterTemp.frameId = 0x192BFF71;
+        inverterTemp.format = QCanBusDevice::Filter::MatchBaseAndExtendedFormat;
+        filterList.append(inverterTemp);
+        motorID.frameId = 0x191AFF71;
+        motorID.format = QCanBusDevice::Filter::MatchBaseAndExtendedFormat;
+        filterList.append(motorID);
+        motorSpeed.frameId = 0x1918FF71;
+        motorSpeed.format = QCanBusDevice::Filter::MatchBaseAndExtendedFormat;
+        filterList.append(motorSpeed);
+
 
         this->device->setConfigurationParameter(QCanBusDevice::RawFilterKey, QVariant::fromValue(filterList));
 
@@ -58,8 +74,7 @@ dash::dash(QObject *parent): QObject(parent)
 void dash::readFrames()
 {
     int value;
-
-
+  //  qDebug() << "Got CANned";
     // Read frames
     while (device->framesAvailable() > 0)
     {
@@ -69,7 +84,7 @@ void dash::readFrames()
 
         if(frame.isValid())
         {
-            qDebug() << frame.frameId();
+//            qDebug() << frame.frameId();
             switch (frame.frameId())
             {
 //                case 0x7DF:
@@ -81,30 +96,46 @@ void dash::readFrames()
 //                    payload = frame.payload();
                     value = payload[4] * pow(16,6) + payload[5] * pow(16,4) + payload[6] * pow(16,2) + payload[7];
                     m_speed = M_PI * 0.445 * 3600 / ( value * 20 * 1000 / 1000000);
-                    emit speedChanged();
+//                    emit speedChanged();
                     break;
 
                 case 0x100:
                     value = payload[1] * pow(16,2) + payload[0];
                     m_hvVoltage = value * 0.1;
+//                  qDebug()<< "HV Voltage: " << m_hvVoltage;
+
 
                     value = payload[5] * pow(16,2) + payload[4];
                     m_hvCurrent = value * 0.1;
-                    m_power = m_hvVoltage * m_hvCurrent;
+//                  qDebug()<< "HV Current: " << m_hvCurrent;
+
+                    m_power = m_hvVoltage * m_hvCurrent / 1000;
 
                     emit hvVoltageChanged();
                     emit powerChanged();
                     break;
 
                 case 0x101:
-                    value = value = payload[1] * pow(16,2) + payload[0];
+                    value = payload[1] * pow(16,2) + payload[0];
                     m_cellVoltage = value * 0.0001;
                     emit cellVoltageChanged();
+                    break;
+
+                case 0x102:
+                    value = payload[1];
+                    m_maxCellTemp = value;
+                    emit maxCellTempChanged();
                     break;
 
                 case 0x704:
                     m_vehicleMode = payload[1];
                     emit vehicleModeChanged();
+                    break;
+
+                case 0x705:
+                    m_shutdownESTP = payload[6];
+                    emit shutdownESTPChanged();
+                    emit dash::shutdownESTPChanged();
                     break;
 
 
@@ -114,8 +145,56 @@ void dash::readFrames()
                     emit lvVoltageChanged();
                     break;
 
+                case 0x192BFF71:
+                    // Inverter temp
+                    value = payload[3];
+                    m_inverterTemp = value;
+                    emit inverterTempChanged();
+                    break;
+
+                case 0x1918FF71:
+                    value = payload[3] * pow(16,2) + payload[2];
+                    // Account for the fact that the value is signed
+                    value *= 1;
+                    if (value >= 32768)
+                    {
+                        value -= 32768;
+                    }
+                    value = 32768 - value;
+//                    qDebug() << "Raw motor speed: " << value;
+                            m_speed = value * 0.02872;
+                    if (m_speed <= 0){ m_speed = 0;}
+                    if (m_speed > 200){ m_speed -= 941.1;}
+
+                    emit speedChanged();
+                    break;
+
+
+                case 0x191AFF71:
+                    value = payload[3] * pow(16,2) + payload[2];
+                    // Account for the fact that the value is signed
+                    if (value >= 32768)
+                    {
+                        value -= 32768;
+                    }
+                    m_motorTemp = value;
+//                    qDebug() << "Motor Temp: " << m_motorTemp;
+
+                    value = payload[5] * pow(16,2) + payload[4];
+                    if (value >= 32768)
+                    {
+                        value -= 32768;
+                    }
+                    value *= 0.0625;
+
+                    emit motorTempChanged();
+                    emit motorVoltageChanged();
+                    break;
+
+
+
                 default:
-                    qDebug() << "Unknown message ID: " << frame.frameId() << "  |  Data: " << decodeFrame(frame);
+                    //qDebug() << "Unknown message ID: " << frame.frameId() << "  |  Data: " << decodeFrame(frame);
                     break;
             }
         }
@@ -193,10 +272,10 @@ void dash::testActivity()
 //    {
 //        m_displayMode = 0;
 //    }
-    emit displayModeChanged();
+//    emit displayModeChanged();
 
     #ifdef PIMODE
-        if (digitalRead(0) == HIGH && pressOnPreviousLoop == 0)
+        if (digitalRead(3) == HIGH && pressOnPreviousLoop == 0)
         {
             m_displayMode += 1;
             if (m_displayMode > 2)

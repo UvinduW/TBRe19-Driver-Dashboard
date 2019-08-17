@@ -9,10 +9,11 @@ Item {
     property int speed: 100
     property bool regen: false
     property int regenPower: 10
-    property int vehicleMode: 0
+    property int vehicleMode: dash.vehicleMode
     property double hvVoltage: 75
-    property int maxCellTemp: 75
+    property int maxCellTemp: dash.maxCellTemp
     property double lvVoltage: 20
+    property int inverterTemp: dash.inverterTemp
     property double cellVoltage: 3.7
     property int cellBars: 1
     property color backgroundColour: "#181818"
@@ -249,11 +250,11 @@ Item {
                     value: cellVoltage
                 }
 
-                LVStatus {
+                InverterTemp {
                     width: 210
                     height: 120
-                    numberLit: lvVoltage < 23? 1 : lvVoltage < 26? 2 : 3
-                    value: lvVoltage
+                    numberLit: inverterTemp < 30? 1 : inverterTemp < 50? 2 : 3
+                    value: inverterTemp
                 }
                 AIRStatus {
                     width: 210

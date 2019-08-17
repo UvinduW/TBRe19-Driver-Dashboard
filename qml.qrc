@@ -30,5 +30,9 @@
         <file>logo_right.png</file>
         <file>screen_files/StartupAnimator.qml</file>
         <file>CircularBar.qml</file>
+        <file>screen_files/car_status/MotorStatus.qml</file>
+        <file>screen_files/car_status/InverterStatus.qml</file>
+        <file>screen_files/car_status/BatteryStatus.qml</file>
+        <file>screen_files/driver_mode/InverterTemp.qml</file>
     </qresource>
 </RCC>

@@ -14,17 +14,17 @@ Item {
         //        anchors.centerIn: parent
         spacing: 30
         Text {
-            id: txtCellVoltage
+            id: txtCellTemp
             Layout.alignment: Qt.AlignCenter
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: 20
             font.bold: true
             font.family: "Eurostile"
             color: "white"
-            text: qsTr("Cell Voltage: " + Math.round(value*100)/100 + " V")
+            text: qsTr("Inv Temp: " + Math.round(value*10)/10 + " C")
         }
         Rectangle {
-            id: cellVoltage
+            id: lvVoltage
             Layout.alignment: Qt.AlignLeft
             width: 210
             height: 50
@@ -34,13 +34,13 @@ Item {
                 anchors.fill: parent
                 spacing: 0
                 Rectangle {
-                    height: cellVoltage.height
-                    width: cellVoltage.width / 4
+                    height: lvVoltage.height
+                    width: lvVoltage.width / 4
                     radius: 20
                     color: numberLit == 1 ?backColour : "transparent"
                     RectangularGlow {
-                        height: cellVoltage.height
-                        width: cellVoltage.width / 4
+                        height: lvVoltage.height
+                        width: lvVoltage.width / 4
                         glowRadius: 20
                         color: numberLit == 1 ? litColour : "transparent"
                         z: -1
@@ -56,13 +56,13 @@ Item {
                     }
                 }
                 Rectangle {
-                    height: cellVoltage.height
-                    width: cellVoltage.width / 4
+                    height: lvVoltage.height
+                    width: lvVoltage.width / 4
                     radius: 20
                     color: numberLit == 2 ?backColour : "transparent"
                     RectangularGlow {
-                        height: cellVoltage.height
-                        width: cellVoltage.width / 4
+                        height: lvVoltage.height
+                        width: lvVoltage.width / 4
                         glowRadius: 20
                         color: numberLit == 2 ? litColour : "transparent"
                         z: -1
@@ -78,13 +78,13 @@ Item {
                     }
                 }
                 Rectangle {
-                    height: cellVoltage.height
-                    width: cellVoltage.width / 4
+                    height: lvVoltage.height
+                    width: lvVoltage.width / 4
                     radius: 20
                     color: numberLit == 3 ?backColour : "transparent"
                     RectangularGlow {
-                        height: cellVoltage.height
-                        width: cellVoltage.width / 4
+                        height: lvVoltage.height
+                        width: lvVoltage.width / 4
                         glowRadius: 20
                         color: numberLit == 3 ? litColour : "transparent"
                         z: -1

@@ -25,8 +25,13 @@ public:
     Q_PROPERTY(double maxCellTemp READ maxCellTemp NOTIFY maxCellTempChanged)
     Q_PROPERTY(int vehicleMode READ vehicleMode NOTIFY vehicleModeChanged)
     Q_PROPERTY(int airStatus READ airStatus NOTIFY airStatusChanged)
-    Q_PROPERTY(int cellVoltage READ cellVoltage NOTIFY cellVoltageChanged)
-    //Q_PROPERTY(int displayMode READ displayMode NOTIFY displayModeChanged)
+    Q_PROPERTY(double cellVoltage READ cellVoltage NOTIFY cellVoltageChanged)
+    Q_PROPERTY(int motorTemp READ motorTemp NOTIFY motorTempChanged)
+    Q_PROPERTY(int motorVoltage READ motorVoltage NOTIFY motorVoltageChanged)
+    Q_PROPERTY(int inverterTemp READ inverterTemp NOTIFY inverterTempChanged)
+    Q_PROPERTY(int shutdownESTP READ shutdownESTP NOTIFY shutdownESTPChanged)
+    Q_PROPERTY(int displayMode READ displayMode NOTIFY displayModeChanged)
+
 
     int speed(){ return this -> m_speed;}
     int power(){ return this -> m_power;}
@@ -35,8 +40,13 @@ public:
     int maxCellTemp(){ return this -> m_maxCellTemp;}
     int vehicleMode(){ return this -> m_vehicleMode;}
     int airStatus(){ return this -> m_airStatus;}
-    int cellVoltage(){ return this -> m_cellVoltage;}
+    double cellVoltage(){ return this -> m_cellVoltage;}
     int displayMode(){return this -> m_displayMode;}
+    int motorTemp(){return this -> m_motorTemp;}
+    int motorVoltage(){return this -> m_motorVoltage;}
+    int inverterTemp(){return this -> m_inverterTemp;}
+
+    int shutdownESTP(){return this -> m_shutdownESTP;}
 
 signals:
     void speedChanged();
@@ -48,6 +58,10 @@ signals:
     void airStatusChanged();
     void cellVoltageChanged();
     void displayModeChanged();
+    void motorTempChanged();
+    void motorVoltageChanged();
+    void inverterTempChanged();
+    void shutdownESTPChanged();
 
 
 private slots:
@@ -55,16 +69,20 @@ private slots:
 
 private:
     //Read-Only
-    int m_speed =70;
+    int m_speed =69;
     int m_power=40;
     double m_hvVoltage=399;
     double m_lvVoltage=27;
-    double m_maxCellTemp=0;
-    int m_vehicleMode=3;
+    double m_maxCellTemp=2;
+    int m_vehicleMode=0;
     int m_airStatus=0;
-    int m_displayMode = 0;
+    int m_displayMode = 1;
     double m_hvCurrent = 0;
-    double m_cellVoltage = 3.8;
+    double m_cellVoltage = 9.81;
+    int m_motorTemp = 0;
+    int m_motorVoltage = 0;
+    int m_inverterTemp = 420;
+    int m_shutdownESTP = 0;
 
     double motor_speed = 0;
 /*    double prevTime = 0;

@@ -9,7 +9,7 @@ Item {
     property color backColour: "#181818"
     property double value: 25.7
     property int numberLit: 3
-    property color litColour: numberLit > 2 ? highColour : numberLit > 1 ? medColour : lowColour
+    property color litColour: numberLit > 2 ? lowColour : numberLit > 1 ? medColour : highColour
     ColumnLayout {
         //        anchors.centerIn: parent
         spacing: 30
@@ -21,7 +21,7 @@ Item {
             font.bold: true
             font.family: "Eurostile"
             color: "white"
-            text: qsTr("Inv Temp: " + Math.round(value*10)/10 + " C")
+            text: qsTr("Inv Temp: " + Math.round(value*10)/10 + " °C")
         }
         Rectangle {
             id: lvVoltage

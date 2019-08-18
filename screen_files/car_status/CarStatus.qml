@@ -16,7 +16,7 @@ Item {
         color: "white"
     }
 
-    Rectangle{
+    Rectangle {
         id: carStatusContainer
         anchors.fill: parent
         color: backgroundColour
@@ -28,83 +28,106 @@ Item {
             opacity: 0.06
             visible: true
         }
-        RowLayout{
-//            anchors.horizontalCenter: parent.horizontalCenter
-//            anchors.verticalCenter: parent.verticalCenter
+        ColumnLayout {
             anchors.centerIn: parent
-//            anchors.fill: parent
             anchors.leftMargin: 10
             anchors.rightMargin: 10
             spacing: 40
-            Rectangle{
-                height: boxHeight
-                width: boxWidth
-                radius: 20
-                color: "transparent"
-                RectangularGlow{
-                    anchors.fill: motor
-                    glowRadius: 10
-                    spread: 0.2
-                    color: "cyan"
+            RowLayout {
+                //            anchors.horizontalCenter: parent.horizontalCenter
+                //            anchors.verticalCenter: parent.verticalCenter
+//                anchors.centerIn: parent
+                //            anchors.fill: parent
+//                anchors.leftMargin: 10
+//                anchors.rightMargin: 10
+                spacing: 40
+                Rectangle {
+                    height: boxHeight
+                    width: boxWidth
+                    radius: 20
+                    color: "transparent"
+                    RectangularGlow {
+                        anchors.fill: motor
+                        glowRadius: 10
+                        spread: 0.2
+                        color: "cyan"
+                    }
+                    MotorStatus {
+                        id: motor
+                        anchors.fill: parent
+                    }
                 }
-                MotorStatus{
-                    id: motor
-                    anchors.fill: parent
+                Rectangle {
+                    height: boxHeight
+                    width: boxWidth
+                    radius: 20
+                    color: "transparent"
+                    RectangularGlow {
+                        anchors.fill: inverter
+                        glowRadius: 10
+                        spread: 0.2
+                        color: "cyan"
+                    }
+                    InverterStatus {
+                        id: inverter
+                        anchors.fill: parent
+                    }
+                }
+                Rectangle {
+                    height: boxHeight
+                    width: boxWidth
+                    radius: 20
+                    color: "transparent"
+                    RectangularGlow {
+                        anchors.fill: bms
+                        glowRadius: 10
+                        spread: 0.2
+                        color: "cyan"
+                    }
+                    BMSStatus {
+                        id: bms
+                        anchors.fill: parent
+                    }
+                }
+                Rectangle {
+                    height: boxHeight
+                    width: boxWidth * 2
+                    radius: 20
+                    color: "transparent"
+                    RectangularGlow {
+                        anchors.fill: cellStatus
+                        glowRadius: 10
+                        spread: 0.2
+                        color: "cyan"
+                    }
+                    CellStatus {
+                        id: cellStatus
+                        anchors.fill: parent
+                    }
                 }
             }
-            Rectangle{
-                height: boxHeight
-                width: boxWidth
+            Rectangle {
+                height: 100
+                width: 650
                 radius: 20
                 color: "transparent"
-                RectangularGlow{
-                    anchors.fill: inverter
+                Layout.alignment: Qt.AlignCenter
+                RectangularGlow {
+                    anchors.fill: otherStatus
                     glowRadius: 10
                     spread: 0.2
                     color: "cyan"
                 }
-                InverterStatus{
-                    id: inverter
-                    anchors.fill: parent
-                }
-            }
-            Rectangle{
-                height: boxHeight
-                width: boxWidth
-                radius: 20
-                color: "transparent"
-                RectangularGlow{
-                    anchors.fill: bms
-                    glowRadius: 10
-                    spread: 0.2
-                    color: "cyan"
-                }
-                BMSStatus{
-                    id: bms
-                    anchors.fill: parent
-                }
-            }
-            Rectangle{
-                height: boxHeight
-                width: boxWidth * 2
-                radius: 20
-                color: "transparent"
-                RectangularGlow{
-                    anchors.fill: cellStatus
-                    glowRadius: 10
-                    spread: 0.2
-                    color: "cyan"
-                }
-                CellStatus{
-                    id: cellStatus
+                OtherStatus {
+                    id: otherStatus
                     anchors.fill: parent
                 }
             }
         }
     }
 }
-
 /*##^## Designer {
     D{i:0;autoSize:true;height:480;width:640}
 }
  ##^##*/
+

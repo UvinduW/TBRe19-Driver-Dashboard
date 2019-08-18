@@ -36,5 +36,6 @@
         <file>screen_files/driver_mode/InverterTemp.qml</file>
         <file>screen_files/car_status/BMSStatus.qml</file>
         <file>screen_files/car_status/CellStatus.qml</file>
+        <file>screen_files/car_status/OtherStatus.qml</file>
     </qresource>
 </RCC>

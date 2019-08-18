@@ -50,7 +50,7 @@ Item {
                     columns: 3
                     rowSpacing: 40
                     columnSpacing: 20
-                    onHeightChanged: console.log(statusGrid.height)
+//                    onHeightChanged: console.log(statusGrid.height)
                     Rectangle {
                         height: 50
                         width: vehicleStatus.width / 4

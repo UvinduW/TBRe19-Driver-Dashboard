@@ -22,7 +22,7 @@ Rectangle {
         ColumnLayout {
             id: statusGrid
             spacing: 10
-            onHeightChanged: console.log(statusGrid.height)
+//            onHeightChanged: console.log(statusGrid.height)
             RowLayout{
                 width: parent.width
                 Text{

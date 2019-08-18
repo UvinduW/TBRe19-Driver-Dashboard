@@ -8,9 +8,10 @@ Rectangle {
     color: backgroundColour
     radius: 10
     ColumnLayout {
-//        anchors.fill: parent
+        anchors.fill: parent
+        anchors.leftMargin: 15
         spacing: 20
-        anchors.centerIn: parent
+        //anchors.centerIn: parent
         Text {
             id: txtInverter
             Layout.alignment: Qt.AlignCenter
@@ -24,7 +25,8 @@ Rectangle {
         ColumnLayout {
             id: statusGrid
             spacing: 10
-            onHeightChanged: console.log(statusGrid.height)
+            width: parent.width
+//            onHeightChanged: console.log(statusGrid.height)
             RowLayout{
                 width: parent.width
                 Text{
@@ -64,15 +66,17 @@ Rectangle {
             RowLayout{
                 width: parent.width
                 Text{
-                    text: "Inverter Current: "
+                    //property string idSign: dash.inverterId<0? " " : "+"
+                    text: "Id: " + Math.round(dash.inverterId*100)/100 + " A"
                     font.pixelSize: itemSize
                     font.bold: true
                     font.family: "Eurostile"
                     color: "white"
                 }
                 Text{
+                    //property string iqSign: dash.inverterIq<0? " " : "+"
                     Layout.alignment: Qt.AlignRight
-                    text: dash.inverterCurrent + " A"
+                    text: "| Iq: " + (Math.round(dash.inverterIq*100)/100) + " A"
                     font.pixelSize: itemSize
                     font.bold: true
                     font.family: "Eurostile"

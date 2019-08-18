@@ -41,7 +41,7 @@ Item {
         legend.visible:false
         antialiasing: true
         backgroundColor: "transparent"
-        onWidthChanged: console.log(width)
+//        onWidthChanged: console.log(width)
 
 
         PieSeries {

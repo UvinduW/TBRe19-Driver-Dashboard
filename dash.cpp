@@ -18,15 +18,16 @@
 #define BMS_Feedback_3 0x102
 #define VCU_1 0x503
 #define VCU_Diagnostics 0x700
-#define VCU_HW_IO 0x701
-#define VCU_Vehicle_Functionality 0x704
+#define VCU_HW_IO 0x651
+#define VCU_Vehicle_Functionality 0x655
 #define Shutdown_Data 0x705
 
 //Extended
 #define HD4_Debug_Temperatures_B 0x192BFF71
 #define HS3_Temperature_Feedback 0x191AFF71
 #define HS1_Torque_Feedback 0x1918FF71
-#define HS2_Status_Feedback 0x1919FF71
+#define HS2_Status_Feedback 0x191BFF71
+#define HD1_Debug_Currents 0x1928FF71
 
 //Shutdown message configuration
 #define fault_active 1
@@ -54,6 +55,7 @@ dash::dash(QObject *parent): QObject(parent)
         QCanBusDevice::Filter motorSpeed;
         QCanBusDevice::Filter inverterTemp;
         QCanBusDevice::Filter inverterStatus;
+        QCanBusDevice::Filter inverterCurrent;
 //        filterList.append(setCanFilter(0x01A));
         filterList.append(setCanFilter(BMS_Feedback_1));
         filterList.append(setCanFilter(BMS_Feedback_2));
@@ -63,19 +65,26 @@ dash::dash(QObject *parent): QObject(parent)
         filterList.append(setCanFilter(VCU_HW_IO));
         filterList.append(setCanFilter(VCU_Vehicle_Functionality));
         filterList.append(setCanFilter(Shutdown_Data));
+
         inverterTemp.frameId = HD4_Debug_Temperatures_B;
         inverterTemp.format = QCanBusDevice::Filter::MatchBaseAndExtendedFormat;
         filterList.append(inverterTemp);
+
         motorID.frameId = HS3_Temperature_Feedback;
         motorID.format = QCanBusDevice::Filter::MatchBaseAndExtendedFormat;
         filterList.append(motorID);
+
         motorSpeed.frameId = HS1_Torque_Feedback;
         motorSpeed.format = QCanBusDevice::Filter::MatchBaseAndExtendedFormat;
         filterList.append(motorSpeed);
+
         inverterStatus.frameId = HS2_Status_Feedback;
         inverterStatus.format = QCanBusDevice::Filter::MatchBaseAndExtendedFormat;
         filterList.append(inverterStatus);
 
+        inverterCurrent.frameId = HD1_Debug_Currents;
+        inverterCurrent.format = QCanBusDevice::Filter::MatchBaseAndExtendedFormat;
+        filterList.append(inverterCurrent);
 
         this->device->setConfigurationParameter(QCanBusDevice::RawFilterKey, QVariant::fromValue(filterList));
 
@@ -95,6 +104,27 @@ dash::dash(QObject *parent): QObject(parent)
     this->m_timer->setInterval(2000);
     connect(this->m_timer,&QTimer::timeout,this,&dash::readButton);
     this->m_timer->start();
+
+    this->m_resetInverterWarning = new QTimer(this);
+    this->m_resetInverterWarning->setInterval(30000);
+    connect(this->m_resetInverterWarning,&QTimer::timeout,this,&dash::warningReset);
+    this->m_resetInverterWarning->start();
+
+}
+
+void dash::warningReset()
+{
+    // Suppress reset warning after 30 seconds - re-enable it afterwards if warning still active
+    if (m_inverterReset == 1)
+    {
+        suppressWarning = 1;
+        m_inverterReset = 0;
+        emit inverterResetChanged();
+    }
+    else
+    {
+        suppressWarning = 0;
+    }
 }
 
 void dash::readFrames()
@@ -211,7 +241,7 @@ void dash::readFrames()
                     // Check for normal shutdowns first
                     m_shutdownFuse = shutdownByte0[3] == fault_active;
                     m_shutdownPCB = shutdownByte0[4] == fault_active;
-                    m_shutdownBOTS = shutdownByte0[5] == fault_active;
+                    //m_shutdownBOTS = shutdownByte0[5] == fault_active;
                     m_shutdownESTP = (shutdownByte0[6] == fault_active) || (shutdownByte1[0] == fault_active);
                     m_shutdownIntertia = shutdownByte0[7] == fault_active;
                     m_shutdownTSMS = shutdownByte1[1] == fault_active;
@@ -235,6 +265,10 @@ void dash::readFrames()
                     {
                         m_shutdownBSPD = 2;
                     }
+                    else
+                    {
+                        m_shutdownBSPD = 0;
+                    }
 
 
                     emit shutdownFuseChanged();
@@ -252,6 +286,34 @@ void dash::readFrames()
 
                     break;
 
+                case HD1_Debug_Currents:
+
+                    // Id current
+                    value = payload[1] * pow(16,2) + payload[0];
+                    // Account for the fact that the value is signed
+                    if (value >= 32768)
+                    {
+                        value -= 32768;
+                    }
+                    value = 32768 - value;
+                    if (value > 7000){value -= 32768;}
+                    m_inverterId = value * 0.0625;
+
+                    // Iq current
+                    value = payload[3] * pow(16,2) + payload[2];
+                    // Account for the fact that the value is signed
+                    if (value >= 32768)
+                    {
+                        value -= 32768;
+                    }
+                    value = 32768 - value;
+                    if (value > 7000){value -= 32768;}
+                    m_inverterIq = value * 0.0625;
+
+                    emit inverterIdChanged();
+                    emit inverterIqChanged();
+                    break;
+
                 case HD4_Debug_Temperatures_B:
                     // Inverter temp
                     value = payload[3];
@@ -261,9 +323,20 @@ void dash::readFrames()
 
                 case HS2_Status_Feedback:
                     // Inverter status
-                    value = payload[4];
+                    value = payload[1] * pow(16,2) + payload[0];
                     m_inverterStatus = value;
+
+                    if (value != 0)
+                    {
+                        if (!suppressWarning)
+                        {
+                            m_inverterReset = 1;
+                        }
+                        this->m_resetInverterWarning->start();
+                    }
+
                     emit inverterStatusChanged();
+                    emit inverterResetChanged();
                     break;
 
 
@@ -307,6 +380,8 @@ void dash::readFrames()
                     {
                         value -= 32768;
                     }
+                    value = 32768 - value;
+                    if (value > 7000){value -= 32768;}
                     m_inverterCurrent = value;
 
                     emit speedChanged();
@@ -442,7 +517,7 @@ void dash::readButton()
 //    emit displayModeChanged();
 
     #ifdef PIMODE
-        if (digitalRead(3) == HIGH && pressOnPreviousLoop == 0)
+        if (digitalRead(3) == LOW && pressOnPreviousLoop == 0)
         {
             m_displayMode += 1;
             if (m_displayMode > 2)

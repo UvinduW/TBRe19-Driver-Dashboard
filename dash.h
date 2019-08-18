@@ -46,6 +46,11 @@ public:
     Q_PROPERTY(double inverterPower READ inverterPower NOTIFY inverterPowerChanged)
     Q_PROPERTY(int inverterStatus READ inverterStatus NOTIFY inverterStatusChanged)
     Q_PROPERTY(int inverterReset READ inverterReset NOTIFY inverterResetChanged)    // Not yet read from CAN bus
+    Q_PROPERTY(double imdInsulation READ imdInsulation NOTIFY imdInsulationChanged)
+
+    Q_PROPERTY(double inverterIq READ inverterIq NOTIFY inverterIqChanged)
+    Q_PROPERTY(double inverterId READ inverterId NOTIFY inverterIdChanged)
+
 
 
 
@@ -92,6 +97,10 @@ public:
     int inverterPower(){return this -> m_inverterPower;}
     int inverterStatus(){return this -> m_inverterStatus;}
     int inverterReset(){return this -> m_inverterReset;}
+    double imdInsulation(){return this -> m_imdInsulation;}
+
+    double inverterId(){return this -> m_inverterId;}
+    double inverterIq(){return this -> m_inverterIq;}
 
     // Shutdowns
     int shutdownFuse(){return this -> m_shutdownFuse;}
@@ -139,6 +148,10 @@ signals:
     void inverterPowerChanged();
     void inverterStatusChanged();
     void inverterResetChanged();
+    void imdInsulationChanged();
+
+    void inverterIdChanged();
+    void inverterIqChanged();
 
 
     //Shutdowns
@@ -158,6 +171,7 @@ signals:
 
 private slots:
     void readButton();
+    void warningReset();
     int *get_bits(int n, int bitswanted);
 
 private:
@@ -166,7 +180,7 @@ private:
     int m_power=40;
     double m_bmsVoltage=399;
     double m_bmsCurrent = 0;
-    double m_lvVoltage=27;
+    double m_lvVoltage=37;
     int m_vehicleMode=0;
     int m_airStatus=0;
     int m_displayMode = 1;
@@ -190,12 +204,15 @@ private:
     int m_inverterCurrent = 0;
     int m_inverterPower = 0;
     int m_inverterStatus = -1;
-    int m_inverterReset = 0;
+    int m_inverterReset = 1;
+    double m_imdInsulation = -1;
+    double m_inverterId = 1;
+    double m_inverterIq = -1;
 
     //Shutdowns
     int m_shutdownFuse = 1;
     int m_shutdownPCB = 1;
-    int m_shutdownBOTS = 1;
+    int m_shutdownBOTS = 0;
     int m_shutdownESTP = 1;
     int m_shutdownIntertia = 1;
     int m_shutdownTSMS = 1;
@@ -204,7 +221,7 @@ private:
     int m_shutdownECU = 1;
     int m_shutdownBMS = 2;
     int m_shutdownIMD = 0;
-    int m_shutdownBSPD = 2;
+    int m_shutdownBSPD = 0;
 
     int *airByte;
 
@@ -213,10 +230,12 @@ private:
     int *shutdownByte2;
 
     double motor_speed = 0;
-/*    double prevTime = 0;
+    double prevTime = 0;
     int timeSincePress = 9999999;
-    int pressOnPreviousLoop = 0;*/
+    int pressOnPreviousLoop = 0;
+    int suppressWarning = 0;
     QTimer * m_timer;
+    QTimer * m_resetInverterWarning;
     QCanBusDevice *device;
 
     // CAN Bus functions

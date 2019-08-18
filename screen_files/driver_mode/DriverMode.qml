@@ -119,10 +119,10 @@ Item {
             onClicked: {
                 if(mouseArea.pressedButtons & Qt.RightButton) {
                     tweak = tweak - 10;
-                    console.log(tweak);
+//                    console.log(tweak);
                 } else {
                     tweak = tweak + 10;
-                    console.log(tweak);
+//                    console.log(tweak);
                 }
             }
         }

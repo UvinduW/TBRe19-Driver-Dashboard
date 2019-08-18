@@ -67,7 +67,7 @@ ApplicationWindow {
         disabled: 0
         status: 0
         onStatusChanged: {
-            console.log(dash.displayMode)
+//            console.log(dash.displayMode)
             vehicleSpeed = 0
             vehiclePower = 0
             vehicleStatus = 1
@@ -98,7 +98,7 @@ ApplicationWindow {
         property int viewIndex: dash.displayMode
         onViewIndexChanged: {
             setCurrentIndex(viewIndex);
-            console.log(swipeView.currentIndex);
+//            console.log(swipeView.currentIndex);
                              }
 //        onHeightChanged: setCurrentIndex(2)
 //        onCurrentIndexChanged: {console.log("swipeView.currentIndex")}
